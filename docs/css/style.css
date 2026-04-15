@@ -1,4 +1,4 @@
-/* 
+﻿/* 
  * Quantitative Finance & Derivatives Platform - Enhanced Stylesheet
  * Author: Bowen Yao
  */
@@ -32,7 +32,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     background: var(--dark-bg);
     color: var(--text-primary);
     line-height: 1.6;
@@ -59,7 +59,7 @@ body {
     background-clip: text;
 }
 .section-title {
-    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     font-size: 2.5rem;
     font-weight: 800;
     margin-bottom: 0.5rem;
@@ -103,7 +103,7 @@ body {
     padding: 0.5rem 0;
 }
 .navbar-brand {
-    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     font-size: 1.3rem;
     display: flex;
     align-items: center;
@@ -191,7 +191,7 @@ body {
     50% { opacity: 0.5; transform: scale(1.2); }
 }
 .hero-title {
-    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     font-size: 3.2rem;
     font-weight: 900;
     line-height: 1.15;
@@ -235,7 +235,7 @@ body {
     border-radius: var(--radius-md);
 }
 .stat-number {
-    font-family: 'Space Grotesk', 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     font-size: 1.5rem;
     font-weight: 800;
     background: var(--primary-gradient);
@@ -348,7 +348,7 @@ body {
 }
 .dashboard-footer {
     font-size: 0.72rem;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
 }
 .metric-card {
     padding: 1rem;
@@ -373,12 +373,12 @@ body {
 .put-option .metric-header i,
 .put-option .metric-value { color: #f5576c; }
 .metric-value {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     font-size: 1.4rem;
     font-weight: 700;
 }
 .metric-change {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     font-size: 0.75rem;
     margin-top: 0.3rem;
 }
@@ -406,14 +406,14 @@ body {
     text-align: center;
 }
 .greek-symbol {
-    font-family: 'Times New Roman', serif;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     font-size: 1rem;
     font-style: italic;
     color: #667eea;
     display: block;
 }
 .greek-value {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     font-size: 0.72rem;
     color: var(--text-secondary);
 }
@@ -431,7 +431,7 @@ body {
     backdrop-filter: blur(10px);
 }
 .profile-title {
-    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     font-size: 2rem;
     font-weight: 800;
 }
@@ -599,7 +599,7 @@ body {
     color: #f093fb;
 }
 .feature-title {
-    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     font-size: 1rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
@@ -618,7 +618,7 @@ body {
 }
 .feature-metrics .metric { display: flex; flex-direction: column; }
 .metric-number {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     font-size: 0.85rem;
     font-weight: 700;
     color: #667eea;
@@ -653,7 +653,7 @@ body {
     width: 100%;
     padding: 0.35rem 0.5rem;
     font-size: 0.85rem;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     font-weight: 600;
     color: var(--text-primary);
     background: rgba(255, 255, 255, 0.06);
@@ -740,7 +740,7 @@ body {
     background: rgba(255, 255, 255, 0.02);
 }
 .card-header h5 {
-    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     font-size: 0.95rem;
     font-weight: 700;
     color: var(--text-secondary);
@@ -775,7 +775,7 @@ body {
     width: 100%;
     padding: 0.55rem 0.8rem;
     font-size: 0.9rem;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     color: var(--text-primary);
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid var(--border-color);
@@ -819,7 +819,7 @@ select.form-control-modern {
     margin-bottom: 0.3rem;
 }
 .price-value {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     font-size: 1.3rem;
     font-weight: 700;
     color: var(--text-primary);
@@ -855,7 +855,7 @@ select.form-control-modern {
     text-align: center;
 }
 .greek-modern-item .greek-symbol {
-    font-family: 'Times New Roman', serif;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     font-size: 1.1rem;
     font-style: italic;
     color: #667eea;
@@ -866,7 +866,7 @@ select.form-control-modern {
     text-transform: uppercase;
 }
 .greek-details .greek-value {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     font-size: 0.78rem;
     font-weight: 600;
     color: var(--text-primary);
@@ -896,7 +896,7 @@ select.form-control-modern {
 }
 .validation-item strong {
     color: var(--text-primary);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     font-size: 0.8rem;
 }
 
@@ -914,7 +914,7 @@ select.form-control-modern {
     color: var(--text-muted);
 }
 .explainer-item .greek-letter {
-    font-family: 'Times New Roman', serif;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     font-size: 1.1rem;
     font-style: italic;
     color: #667eea;
@@ -1006,7 +1006,7 @@ select.form-control-modern {
     font-size: 1.1rem;
 }
 .formula-header h5 {
-    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     font-size: 0.95rem;
     font-weight: 700;
     margin: 0;
@@ -1065,7 +1065,7 @@ select.form-control-modern {
     margin-bottom: 1.2rem;
 }
 .tech-stack-card h5 {
-    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     font-weight: 700;
     font-size: 1.05rem;
     margin-bottom: 1rem;
@@ -1115,7 +1115,7 @@ select.form-control-modern {
     padding: 1rem;
 }
 .perf-value {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     font-size: 1.4rem;
     font-weight: 800;
     background: var(--primary-gradient);
@@ -1138,7 +1138,7 @@ select.form-control-modern {
     padding: 2.5rem;
 }
 .contact-info h5 {
-    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     font-weight: 700;
 }
 .contact-item {
@@ -1550,7 +1550,7 @@ body {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--text-primary);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
 }
 
 .stat-label {
@@ -1752,7 +1752,7 @@ body {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--text-primary);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     margin-bottom: 0.25rem;
 }
 
@@ -1816,14 +1816,14 @@ body {
     font-weight: 700;
     font-size: 1rem;
     color: #60a5fa;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
 }
 
 .greek-value {
     font-size: 0.85rem;
     font-weight: 600;
     color: var(--text-primary);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
 }
 
 .mini-chart {
@@ -1928,7 +1928,7 @@ body {
     font-size: 1.1rem;
     font-weight: 700;
     color: #4ade80;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
 }
 
 .metric-label {
@@ -2024,7 +2024,7 @@ body {
     border-radius: var(--radius-md);
     color: var(--text-primary);
     font-size: 1rem;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     transition: all var(--transition-normal) ease;
 }
 
@@ -2136,7 +2136,7 @@ body {
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: var(--spacing-xs);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
 }
 
 .call-option .price-value {
@@ -2223,7 +2223,7 @@ body {
     font-size: 1rem;
     font-weight: 600;
     color: #60a5fa;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     margin-bottom: 0.25rem;
 }
 
@@ -2270,7 +2270,7 @@ body {
 
 .validation-comparison strong {
     color: var(--text-primary);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
 }
 
 .validation-confidence {
@@ -2321,7 +2321,7 @@ body {
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 0.25rem;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
 }
 
 .analysis-meta {
@@ -2492,7 +2492,7 @@ body {
     font-size: 1.1rem;
     font-weight: 700;
     color: #4ade80;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     margin-bottom: var(--spacing-xs);
 }
 
@@ -2544,7 +2544,7 @@ body {
     font-size: 2rem;
     font-weight: 700;
     color: var(--text-primary);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     margin-bottom: var(--spacing-xs);
 }
 
@@ -3133,7 +3133,7 @@ a:focus {
     font-size: 2.5rem;
     font-weight: 700;
     color: #60a5fa;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
     margin-bottom: var(--spacing-sm);
 }
 
@@ -3156,7 +3156,7 @@ a:focus {
 
 .iv-detail-item strong {
     color: var(--text-primary);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Calisto MT', 'Cambria', Georgia, serif;
 }
 
 /* Risk Level Colors */
@@ -3423,7 +3423,7 @@ a:focus {
 }
 
 .impact-list li::before {
-    content: '✓';
+    content: 'âœ“';
     position: absolute;
     left: 0;
     top: 0.5rem;
