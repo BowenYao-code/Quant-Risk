@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Risk Metrics — VaR, CVaR, Stress Testing, Implied Volatility, and Arbitrage Detection">
+    <title>Risk Metrics | Bowen Yao — Quant Platform</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x1F4CA;</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
+    <script>window.MathJax={tex:{inlineMath:[['$','$']],displayMath:[['$$','$$']]}}</script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.min.js" async></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-scrolled">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html"><span class="brand-icon">&#916;</span><span class="gradient-text">Quant</span><span class="text-light">Platform</span></a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pricing-lab.html">Pricing Lab</a></li>
+                    <li class="nav-item"><a class="nav-link" href="greeks.html">Greeks</a></li>
+                    <li class="nav-item"><a class="nav-link" href="monte-carlo.html">Monte Carlo</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="risk-metrics.html">Risk</a></li>
+                    <li class="nav-item"><a class="nav-link" href="strategies.html">Strategies</a></li>
+                    <li class="nav-item"><a class="nav-link" href="surfaces.html">Surfaces</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://github.com/BowenYao-code/Risk-Management" target="_blank"><i class="fab fa-github me-1"></i>GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="py-5 section-dark" style="padding-top:120px!important">
+        <div class="container">
+            <div class="text-center mb-4">
+                <span class="section-badge">Risk Management</span>
+                <h2 class="section-title gradient-text">Risk Metrics &amp; Analysis</h2>
+                <p class="section-subtitle">VaR, CVaR, stress testing, implied volatility solving, and arbitrage detection</p>
+            </div>
+
+            <div class="shared-params-bar mb-4">
+                <div class="row g-2 align-items-end">
+                    <div class="col"><label class="form-label-mini">Spot (S)</label><input type="number" class="form-control-mini" id="spotPrice" value="100" step="1"></div>
+                    <div class="col"><label class="form-label-mini">Strike (K)</label><input type="number" class="form-control-mini" id="strikePrice" value="105" step="1"></div>
+                    <div class="col"><label class="form-label-mini">Time (T yr)</label><input type="number" class="form-control-mini" id="timeToExpiry" value="0.25" step="0.01"></div>
+                    <div class="col"><label class="form-label-mini">Rate (r%)</label><input type="number" class="form-control-mini" id="riskFreeRate" value="5" step="0.1"></div>
+                    <div class="col"><label class="form-label-mini">Vol (&sigma;%)</label><input type="number" class="form-control-mini" id="volatility" value="20" step="1"></div>
+                </div>
+            </div>
+
+            <!-- VaR / CVaR Section -->
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="calculator-card">
+                        <div class="card-header"><h5><i class="fas fa-shield-alt me-2"></i>VaR / CVaR</h5></div>
+                        <div class="p-4">
+                            <div class="input-group-modern mb-3">
+                                <label class="form-label-modern">Portfolio Value</label>
+                                <input type="number" class="form-control-modern" id="portfolioValue" value="1000000" step="10000">
+                                <span class="input-suffix">$</span>
+                            </div>
+                            <div class="input-group-modern mb-3">
+                                <label class="form-label-modern">Confidence Level</label>
+                                <select class="form-control-modern" id="confidenceLevel">
+                                    <option value="0.90">90%</option>
+                                    <option value="0.95" selected>95%</option>
+                                    <option value="0.99">99%</option>
+                                </select>
+                            </div>
+                            <button class="btn-modern btn-calculate w-100" onclick="calculateRiskMetrics()"><i class="fas fa-exclamation-triangle me-2"></i>Calculate VaR / CVaR</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="results-card-modern">
+                        <div class="card-header"><h5><i class="fas fa-chart-pie me-2"></i>Risk Analysis</h5></div>
+                        <div id="riskResults" class="results-content">
+                            <div class="results-placeholder text-center py-5">
+                                <i class="fas fa-shield-alt fa-3x text-muted mb-3"></i>
+                                <h6 class="text-muted">Value-at-Risk, Expected Shortfall &amp; stress testing</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Implied Vol Section -->
+            <div class="row g-4 mt-4">
+                <div class="col-lg-4">
+                    <div class="calculator-card">
+                        <div class="card-header"><h5><i class="fas fa-brain me-2"></i>Implied Volatility</h5></div>
+                        <div class="p-4">
+                            <div class="input-group-modern mb-3">
+                                <label class="form-label-modern">Market Price</label>
+                                <input type="number" class="form-control-modern" id="marketPrice" value="8.50" step="0.01">
+                                <span class="input-suffix">$</span>
+                            </div>
+                            <div class="input-group-modern mb-4">
+                                <label class="form-label-modern">Option Type</label>
+                                <select class="form-control-modern" id="ivOptionType">
+                                    <option value="call" selected>Call Option</option>
+                                    <option value="put">Put Option</option>
+                                </select>
+                            </div>
+                            <button class="btn-modern btn-calculate w-100 mb-3" onclick="solveImpliedVolatility()"><i class="fas fa-search me-2"></i>Solve Implied Vol</button>
+                            <button class="btn-modern btn-secondary-modern w-100" onclick="generateVolSmile()"><i class="fas fa-chart-area me-2"></i>Generate Vol Smile</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="results-card-modern">
+                        <div class="card-header"><h5><i class="fas fa-brain me-2"></i>Implied Volatility Analysis</h5></div>
+                        <div id="ivResults" class="results-content">
+                            <div class="results-placeholder text-center py-5">
+                                <i class="fas fa-brain fa-3x text-muted mb-3"></i>
+                                <h6 class="text-muted">Newton-Raphson solver &amp; volatility smile visualization</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Arbitrage Section -->
+            <div class="row g-4 mt-4">
+                <div class="col-lg-4">
+                    <div class="calculator-card">
+                        <div class="card-header"><h5><i class="fas fa-balance-scale me-2"></i>Arbitrage Detection</h5></div>
+                        <div class="p-4">
+                            <div class="input-group-modern mb-3">
+                                <label class="form-label-modern">Method</label>
+                                <select class="form-control-modern" id="arbMethod">
+                                    <option value="all" selected>All Methods</option>
+                                    <option value="putcall">Put-Call Parity</option>
+                                    <option value="calendar">Calendar Spread</option>
+                                    <option value="butterfly">Butterfly Spread</option>
+                                </select>
+                            </div>
+                            <button class="btn-modern btn-calculate w-100" onclick="detectArbitrage()"><i class="fas fa-search me-2"></i>Detect Arbitrage</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="results-card-modern">
+                        <div class="card-header"><h5><i class="fas fa-balance-scale me-2"></i>Arbitrage Analysis</h5></div>
+                        <div id="arbitrageResults" class="results-content">
+                            <div class="results-placeholder text-center py-5">
+                                <i class="fas fa-balance-scale fa-3x text-muted mb-3"></i>
+                                <h6 class="text-muted">Detect pricing inconsistencies &amp; arbitrage opportunities</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Theory -->
+            <div class="row g-4 mt-5">
+                <div class="col-lg-6">
+                    <div class="formula-card">
+                        <div class="formula-header"><i class="fas fa-shield-alt"></i><h5>Value at Risk &amp; Expected Shortfall</h5></div>
+                        <div class="formula-body">
+                            <div class="formula-block">$$\text{VaR}_\alpha = -\inf\{x : P(L \le x) \ge \alpha\}$$</div>
+                            <div class="formula-detail">$$\text{ES}_\alpha = \frac{1}{1-\alpha}\int_\alpha^1 \text{VaR}_u\,du$$</div>
+                            <p class="formula-note">VaR gives the maximum loss at confidence $\alpha$. ES (CVaR) is the expected loss given that VaR is exceeded.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="formula-card">
+                        <div class="formula-header"><i class="fas fa-balance-scale"></i><h5>Put-Call Parity &amp; Arbitrage</h5></div>
+                        <div class="formula-body">
+                            <div class="formula-block">$$C - P = S_0 - K e^{-rT}$$</div>
+                            <div class="formula-detail">$$\varepsilon = |C - P - S_0 + Ke^{-rT}| \approx 0$$</div>
+                            <p class="formula-note">Non-zero $\varepsilon$ implies arbitrage opportunity or pricing error.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-4 text-center">
+        <div class="container">
+            <p class="mb-2">&copy; 2025 Bowen Yao. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="index.html">Home</a><span class="mx-2">&bull;</span>
+                <a href="https://github.com/BowenYao-code/Risk-Management" target="_blank">GitHub</a><span class="mx-2">&bull;</span>
+                <a href="mailto:bowenyao984@gmail.com">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/black-scholes.js"></script>
+    <script src="js/advanced-features.js"></script>
+    <script>
+        function getParams(){
+            return {S:parseFloat(document.getElementById('spotPrice').value),K:parseFloat(document.getElementById('strikePrice').value),T:parseFloat(document.getElementById('timeToExpiry').value),r:parseFloat(document.getElementById('riskFreeRate').value)/100,sigma:parseFloat(document.getElementById('volatility').value)/100};
+        }
+        var riskSystem,arbitrageDetector;
+
+        function calculateRiskMetrics(){
+            try{var p=getParams();if(!riskSystem)riskSystem=new RiskMeasurementSystem();
+                var pv=parseFloat(document.getElementById('portfolioValue').value);
+                var cl=parseFloat(document.getElementById('confidenceLevel').value);
+                var r=riskSystem.calculateRiskMetrics({S:p.S,K:p.K,T:p.T,r:p.r,sigma:p.sigma,portfolioValue:pv});
+                var clKey=(cl*100).toFixed(0)+'%';
+                var varVal=r.var[clKey]?r.var[clKey].historical:0;
+                var cvarVal=r.cvar[clKey]?r.cvar[clKey].historical:0;
+                var stressHtml='';for(var sn in r.stressTesting){var st=r.stressTesting[sn];stressHtml+='<div class="col-md-3"><div class="validation-item"><span>'+sn+'</span><strong class="'+(st.callPnL<0?'text-danger':'text-success')+'">$'+st.callPnL.toFixed(2)+'</strong></div></div>';}
+                document.getElementById('riskResults').innerHTML=
+                    '<div class="row mb-4 g-3">'+
+                        '<div class="col-md-4"><div class="price-card-modern" style="border-left:3px solid #f5576c"><div class="price-card-header">Value at Risk</div><div class="price-value text-danger">$'+Math.abs(varVal).toFixed(0)+'</div><div class="price-meta">'+(cl*100).toFixed(0)+'% confidence</div></div></div>'+
+                        '<div class="col-md-4"><div class="price-card-modern" style="border-left:3px solid #ff9a9e"><div class="price-card-header">Expected Shortfall</div><div class="price-value text-warning">$'+Math.abs(cvarVal).toFixed(0)+'</div><div class="price-meta">CVaR / Tail Risk</div></div></div>'+
+                        '<div class="col-md-4"><div class="price-card-modern" style="border-left:3px solid #38ef7d"><div class="price-card-header">Portfolio Value</div><div class="price-value">$'+pv.toLocaleString()+'</div><div class="price-meta">Current exposure</div></div></div>'+
+                    '</div>'+
+                    '<div class="validation-section"><h6 class="validation-title">Stress Scenarios</h6><div class="row">'+stressHtml+'</div></div>';
+            }catch(e){document.getElementById('riskResults').innerHTML='<div class="text-center py-4 text-danger"><p>'+e.message+'</p></div>';}
+        }
+
+        function solveImpliedVolatility(){
+            try{var p=getParams();var mp=parseFloat(document.getElementById('marketPrice').value);var ot=document.getElementById('ivOptionType').value;
+                var iv=calculateImpliedVolatility(p.S,p.K,p.T,p.r,mp,ot);
+                var modelBS=new BlackScholesModel(p.S,p.K,p.T,p.r,iv);var modelPrice=ot==='call'?modelBS.callPrice():modelBS.putPrice();
+                document.getElementById('ivResults').innerHTML=
+                    '<div class="row mb-4 g-3">'+
+                        '<div class="col-md-4"><div class="price-card-modern call-option"><div class="price-card-header">Implied Volatility</div><div class="price-value">'+(iv*100).toFixed(2)+'%</div><div class="price-meta">Annualized</div></div></div>'+
+                        '<div class="col-md-4"><div class="price-card-modern"><div class="price-card-header">Market Price</div><div class="price-value">$'+mp.toFixed(2)+'</div><div class="price-meta">'+ot+' option</div></div></div>'+
+                        '<div class="col-md-4"><div class="price-card-modern"><div class="price-card-header">Model @ IV</div><div class="price-value">$'+modelPrice.toFixed(4)+'</div><div class="price-meta">BS w/ solved &sigma;</div></div></div>'+
+                    '</div>'+
+                    '<div class="validation-section"><h6 class="validation-title">IV Analysis</h6><div class="row">'+
+                        '<div class="col-md-4"><div class="validation-item"><span>Input &sigma;:</span><strong>'+(p.sigma*100).toFixed(1)+'%</strong></div></div>'+
+                        '<div class="col-md-4"><div class="validation-item"><span>Implied &sigma;:</span><strong>'+(iv*100).toFixed(2)+'%</strong></div></div>'+
+                        '<div class="col-md-4"><div class="validation-item"><span>IV Premium:</span><strong>'+((iv-p.sigma)*100).toFixed(2)+'%</strong></div></div>'+
+                    '</div></div>';
+            }catch(e){document.getElementById('ivResults').innerHTML='<div class="text-center py-4 text-danger"><p>'+e.message+'</p></div>';}
+        }
+        function generateVolSmile(){
+            var p=getParams();var strikes=[],ivs=[];
+            for(var k=p.S*0.7;k<=p.S*1.3;k+=p.S*0.03){
+                strikes.push(k);
+                var price=new BlackScholesModel(p.S,k,p.T,p.r,p.sigma).callPrice();
+                var m=k/p.S;var smileAdj=0.03*(m-1)*(m-1)+Math.random()*0.005;
+                try{ivs.push((calculateImpliedVolatility(p.S,k,p.T,p.r,price,'call')+smileAdj)*100);}catch(e){ivs.push(p.sigma*100);}
+            }
+            document.getElementById('ivResults').innerHTML='<div id="volSmileChart" style="height:400px"></div>';
+            Plotly.newPlot('volSmileChart',[{x:strikes,y:ivs,type:'scatter',mode:'lines+markers',line:{color:'#667eea',width:3},marker:{size:5}}],
+                {paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',font:{color:'#ccc'},
+                 xaxis:{title:'Strike Price',gridcolor:'rgba(255,255,255,0.05)'},
+                 yaxis:{title:'Implied Volatility (%)',gridcolor:'rgba(255,255,255,0.05)'},
+                 title:{text:'Volatility Smile',font:{color:'#ddd'}},margin:{t:50}},{responsive:true});
+        }
+
+        function detectArbitrage(){
+            try{var p=getParams();if(!arbitrageDetector)arbitrageDetector=new ArbitrageDetector();
+                var method=document.getElementById('arbMethod').value;
+                var r=arbitrageDetector.detectArbitrageOpportunities(p);
+                var checks=[
+                    {name:'Put-Call Parity',passed:!r.putCallParity.arbitrageOpportunity,detail:'Diff: $'+r.putCallParity.difference.toFixed(6)+' \u2014 '+r.putCallParity.recommendation},
+                    {name:'Calendar Spread',passed:!r.calendarSpread.arbitrageDetected,detail:'Spread: $'+r.calendarSpread.spreadValue.toFixed(4)+' \u2014 '+r.calendarSpread.recommendation},
+                    {name:'Butterfly Spread',passed:!r.butterflySpread.arbitrageDetected,detail:'Value: $'+r.butterflySpread.butterflyValue.toFixed(4)+' \u2014 '+r.butterflySpread.recommendation},
+                    {name:'Box Spread',passed:!r.boxSpread.arbitrageDetected,detail:'Diff: $'+r.boxSpread.difference.toFixed(6)+' \u2014 '+r.boxSpread.recommendation}
+                ];
+                if(method!=='all')checks=checks.filter(function(c){return method==='putcall'?c.name==='Put-Call Parity':method==='calendar'?c.name==='Calendar Spread':c.name==='Butterfly Spread';});
+                var checksHtml='';checks.forEach(function(c){checksHtml+='<div class="col-md-'+(checks.length<=2?'6':'3')+'"><div class="price-card-modern" style="border-left:3px solid '+(c.passed?'#38ef7d':'#f5576c')+'"><div class="price-card-header">'+c.name+'</div><div class="price-value '+(c.passed?'text-success':'text-danger')+'">'+(c.passed?'&#10003; Pass':'&#10007; Fail')+'</div><div class="price-meta">'+c.detail+'</div></div></div>';});
+                document.getElementById('arbitrageResults').innerHTML=
+                    '<div class="row mb-4 g-3">'+checksHtml+'</div>'+
+                    '<div class="validation-section"><h6 class="validation-title">Summary</h6><div class="validation-item"><span>Total Opportunities:</span><strong>'+r.summary.totalOpportunities+'</strong></div><div class="validation-item"><span>Market Efficiency:</span><strong>'+r.summary.marketEfficiency+'</strong></div><div class="validation-item"><span>Assessment:</span><strong>'+r.summary.overallAssessment+'</strong></div></div>';
+            }catch(e){document.getElementById('arbitrageResults').innerHTML='<div class="text-center py-4 text-danger"><p>'+e.message+'</p></div>';}
+        }
+    </script>
+</body>
+</html>

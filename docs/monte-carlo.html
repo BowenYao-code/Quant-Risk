@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Monte Carlo Simulation — Standard, Antithetic Variates, Control Variates with convergence analysis">
+    <title>Monte Carlo | Bowen Yao — Quant Platform</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x1F4CA;</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
+    <script>window.MathJax={tex:{inlineMath:[['$','$']],displayMath:[['$$','$$']]}}</script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.min.js" async></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-scrolled">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html"><span class="brand-icon">&#916;</span><span class="gradient-text">Quant</span><span class="text-light">Platform</span></a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pricing-lab.html">Pricing Lab</a></li>
+                    <li class="nav-item"><a class="nav-link" href="greeks.html">Greeks</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="monte-carlo.html">Monte Carlo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="risk-metrics.html">Risk</a></li>
+                    <li class="nav-item"><a class="nav-link" href="strategies.html">Strategies</a></li>
+                    <li class="nav-item"><a class="nav-link" href="surfaces.html">Surfaces</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://github.com/BowenYao-code/Risk-Management" target="_blank"><i class="fab fa-github me-1"></i>GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="py-5 section-dark" style="padding-top:120px!important">
+        <div class="container">
+            <div class="text-center mb-4">
+                <span class="section-badge">Stochastic</span>
+                <h2 class="section-title gradient-text">Monte Carlo Simulation Engine</h2>
+                <p class="section-subtitle">GBM path simulation with variance reduction techniques and convergence analysis</p>
+            </div>
+
+            <div class="shared-params-bar mb-4">
+                <div class="row g-2 align-items-end">
+                    <div class="col"><label class="form-label-mini">Spot (S)</label><input type="number" class="form-control-mini" id="spotPrice" value="100" step="1"></div>
+                    <div class="col"><label class="form-label-mini">Strike (K)</label><input type="number" class="form-control-mini" id="strikePrice" value="105" step="1"></div>
+                    <div class="col"><label class="form-label-mini">Time (T yr)</label><input type="number" class="form-control-mini" id="timeToExpiry" value="0.25" step="0.01"></div>
+                    <div class="col"><label class="form-label-mini">Rate (r%)</label><input type="number" class="form-control-mini" id="riskFreeRate" value="5" step="0.1"></div>
+                    <div class="col"><label class="form-label-mini">Vol (&sigma;%)</label><input type="number" class="form-control-mini" id="volatility" value="20" step="1"></div>
+                    <div class="col-auto"><button class="btn-mini-calculate" onclick="runMonteCarloAnalysis()"><i class="fas fa-play me-1"></i>Simulate</button></div>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="calculator-card">
+                        <div class="card-header"><h5><i class="fas fa-dice me-2"></i>Simulation Config</h5></div>
+                        <div class="p-4">
+                            <div class="input-group-modern mb-3">
+                                <label class="form-label-modern">Simulations</label>
+                                <select class="form-control-modern" id="mcSimulations">
+                                    <option value="10000">10,000</option>
+                                    <option value="50000" selected>50,000</option>
+                                    <option value="100000">100,000</option>
+                                    <option value="500000">500,000</option>
+                                </select>
+                            </div>
+                            <div class="input-group-modern mb-4">
+                                <label class="form-label-modern">Variance Reduction</label>
+                                <select class="form-control-modern" id="mcTechnique">
+                                    <option value="standard">Standard MC</option>
+                                    <option value="antithetic" selected>Antithetic Variates</option>
+                                    <option value="control">Control Variates</option>
+                                </select>
+                            </div>
+                            <button class="btn-modern btn-calculate w-100 mb-3" onclick="runMonteCarloAnalysis()"><i class="fas fa-play me-2"></i>Run Simulation</button>
+                            <button class="btn-modern btn-secondary-modern w-100" onclick="runConvergenceStudy()"><i class="fas fa-chart-line me-2"></i>Convergence Study</button>
+                        </div>
+                    </div>
+
+                    <!-- Exotic Options -->
+                    <div class="calculator-card mt-4">
+                        <div class="card-header"><h5><i class="fas fa-gem me-2"></i>Exotic Options (MC)</h5></div>
+                        <div class="p-4">
+                            <div class="input-group-modern mb-3">
+                                <label class="form-label-modern">Exotic Type</label>
+                                <select class="form-control-modern" id="exoticType">
+                                    <option value="barrier-down-out">Down-and-Out Barrier</option>
+                                    <option value="barrier-down-in">Down-and-In Barrier</option>
+                                    <option value="barrier-up-out">Up-and-Out Barrier</option>
+                                    <option value="barrier-up-in">Up-and-In Barrier</option>
+                                    <option value="asian-arithmetic">Asian (Arithmetic Avg)</option>
+                                    <option value="asian-geometric">Asian (Geometric Avg)</option>
+                                    <option value="digital-cash">Digital Cash-or-Nothing</option>
+                                    <option value="digital-asset">Digital Asset-or-Nothing</option>
+                                    <option value="lookback-fixed">Lookback (Fixed Strike)</option>
+                                    <option value="lookback-floating">Lookback (Floating Strike)</option>
+                                </select>
+                            </div>
+                            <div class="input-group-modern mb-3">
+                                <label class="form-label-modern">Barrier Level</label>
+                                <input type="number" class="form-control-modern" id="barrierLevel" value="90" step="1">
+                            </div>
+                            <div class="input-group-modern mb-3">
+                                <label class="form-label-modern">Option Type</label>
+                                <select class="form-control-modern" id="exoticOptionType">
+                                    <option value="call" selected>Call</option>
+                                    <option value="put">Put</option>
+                                </select>
+                            </div>
+                            <div class="input-group-modern mb-4">
+                                <label class="form-label-modern">MC Paths</label>
+                                <select class="form-control-modern" id="exoticPaths">
+                                    <option value="50000" selected>50,000</option>
+                                    <option value="100000">100,000</option>
+                                    <option value="200000">200,000</option>
+                                </select>
+                            </div>
+                            <button class="btn-modern btn-calculate w-100" onclick="priceExoticOption()"><i class="fas fa-gem me-2"></i>Price Exotic</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="results-card-modern">
+                        <div class="card-header"><h5><i class="fas fa-chart-area me-2"></i>Simulation Results</h5></div>
+                        <div id="montecarloResults" class="results-content">
+                            <div class="results-placeholder text-center py-5">
+                                <i class="fas fa-dice fa-3x text-muted mb-3"></i>
+                                <h6 class="text-muted">Stochastic simulation with variance reduction &amp; convergence analysis</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="results-card-modern mt-4">
+                        <div class="card-header"><h5><i class="fas fa-gem me-2"></i>Exotic Option Results</h5></div>
+                        <div id="exoticResults" class="results-content">
+                            <div class="results-placeholder text-center py-5">
+                                <i class="fas fa-gem fa-3x text-muted mb-3"></i>
+                                <h6 class="text-muted">Barrier, Asian, Digital &amp; Lookback option pricing via Monte Carlo</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Theory -->
+            <div class="row g-4 mt-5">
+                <div class="col-lg-6">
+                    <div class="formula-card">
+                        <div class="formula-header"><i class="fas fa-dice"></i><h5>Geometric Brownian Motion</h5></div>
+                        <div class="formula-body">
+                            <div class="formula-block">$$dS = \mu S\,dt + \sigma S\,dW_t$$</div>
+                            <div class="formula-detail">$$S_T = S_0 \exp\!\left[\left(r - \tfrac{\sigma^2}{2}\right)T + \sigma\sqrt{T}\,Z\right]$$</div>
+                            <p class="formula-note">Risk-neutral pricing: simulate terminal prices, discount expected payoffs at the risk-free rate.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="formula-card">
+                        <div class="formula-header"><i class="fas fa-compress-arrows-alt"></i><h5>Variance Reduction</h5></div>
+                        <div class="formula-body">
+                            <div class="formula-block">$$\hat{C}_{anti} = \frac{1}{2}\left[f(Z) + f(-Z)\right]$$</div>
+                            <p class="formula-note"><strong>Antithetic</strong>: uses $Z$ and $-Z$. <strong>Control Variates</strong>: adjusts with known-expectation control. Both reduce standard error for the same sim count.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-4 text-center">
+        <div class="container">
+            <p class="mb-2">&copy; 2025 Bowen Yao. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="index.html">Home</a><span class="mx-2">&bull;</span>
+                <a href="https://github.com/BowenYao-code/Risk-Management" target="_blank">GitHub</a><span class="mx-2">&bull;</span>
+                <a href="mailto:bowenyao984@gmail.com">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/black-scholes.js"></script>
+    <script src="js/advanced-features.js"></script>
+    <script>
+        function getParams(){
+            return {S:parseFloat(document.getElementById('spotPrice').value),K:parseFloat(document.getElementById('strikePrice').value),T:parseFloat(document.getElementById('timeToExpiry').value),r:parseFloat(document.getElementById('riskFreeRate').value)/100,sigma:parseFloat(document.getElementById('volatility').value)/100};
+        }
+        var advancedMC;
+        function runMonteCarloAnalysis(){
+            try{
+                var p=getParams();if(!advancedMC)advancedMC=new AdvancedMonteCarlo();
+                var numSims=parseInt(document.getElementById('mcSimulations').value);
+                var technique=document.getElementById('mcTechnique').value;
+                var full=advancedMC.runComprehensiveSimulation({S:p.S,K:p.K,T:p.T,r:p.r,sigma:p.sigma,numSimulations:numSims});
+                var mc=technique==='antithetic'?full.antithetic:technique==='control'?full.controlVariates:full.standard;
+                var bs=new BlackScholesModel(p.S,p.K,p.T,p.r,p.sigma);var bsCall=bs.callPrice();
+                var callSE=mc.callStdError||0;var callCI=callSE*1.96;
+                var putSE=mc.putStdError||0;var putCI=putSE*1.96;
+                document.getElementById('montecarloResults').innerHTML=
+                    '<div class="row mb-4 g-3">'+
+                        '<div class="col-md-4"><div class="price-card-modern call-option"><div class="price-card-header">MC Call Price</div><div class="price-value">$'+mc.callPrice.toFixed(4)+'</div><div class="price-meta">95% CI: &plusmn;'+callCI.toFixed(4)+'</div></div></div>'+
+                        '<div class="col-md-4"><div class="price-card-modern put-option"><div class="price-card-header">MC Put Price</div><div class="price-value">$'+mc.putPrice.toFixed(4)+'</div><div class="price-meta">95% CI: &plusmn;'+putCI.toFixed(4)+'</div></div></div>'+
+                        '<div class="col-md-4"><div class="price-card-modern"><div class="price-card-header">BS Benchmark</div><div class="price-value">$'+bsCall.toFixed(4)+'</div><div class="price-meta">Error: '+(Math.abs(mc.callPrice-bsCall)/bsCall*100).toFixed(3)+'%</div></div></div>'+
+                    '</div>'+
+                    '<div class="validation-section"><h6 class="validation-title">Convergence &amp; Statistics</h6><div class="row">'+
+                        '<div class="col-md-3"><div class="validation-item"><span>Simulations:</span><strong>'+numSims.toLocaleString()+'</strong></div></div>'+
+                        '<div class="col-md-3"><div class="validation-item"><span>Technique:</span><strong>'+(mc.method||technique)+'</strong></div></div>'+
+                        '<div class="col-md-3"><div class="validation-item"><span>Std Error:</span><strong>'+callSE.toFixed(6)+'</strong></div></div>'+
+                        '<div class="col-md-3"><div class="validation-item"><span>Convergence:</span><strong>'+(full.comparison.convergence?'Yes':'No')+'</strong></div></div>'+
+                    '</div></div>';
+            }catch(e){document.getElementById('montecarloResults').innerHTML='<div class="text-center py-4 text-danger"><p>'+e.message+'</p></div>';}
+        }
+
+        function runConvergenceStudy(){
+            var p=getParams();if(!advancedMC)advancedMC=new AdvancedMonteCarlo();
+            var simCounts=[100,500,1000,5000,10000,25000,50000];
+            var prices=[],errors=[],bsRef=new BlackScholesModel(p.S,p.K,p.T,p.r,p.sigma).callPrice();
+            simCounts.forEach(function(n){
+                var r=advancedMC.runComprehensiveSimulation({S:p.S,K:p.K,T:p.T,r:p.r,sigma:p.sigma,numSimulations:n});
+                prices.push(r.standard.callPrice);errors.push(r.standard.callStdError);
+            });
+            document.getElementById('montecarloResults').innerHTML='<div id="convChart" style="height:400px"></div>';
+            Plotly.newPlot('convChart',[
+                {x:simCounts,y:prices,name:'MC Price',line:{color:'#667eea',width:3}},
+                {x:simCounts,y:simCounts.map(function(){return bsRef;}),name:'BS Ref',line:{color:'#38ef7d',width:2,dash:'dash'}}
+            ],{paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',font:{color:'#ccc'},
+               xaxis:{title:'Number of Simulations',type:'log',gridcolor:'rgba(255,255,255,0.05)'},
+               yaxis:{title:'Call Price ($)',gridcolor:'rgba(255,255,255,0.05)'},
+               title:{text:'Monte Carlo Convergence',font:{color:'#ddd'}},margin:{t:50},legend:{orientation:'h',y:-0.15}},{responsive:true});
+        }
+
+        function priceExoticOption(){
+            var p=getParams();var exType=document.getElementById('exoticType').value;
+            var barrier=parseFloat(document.getElementById('barrierLevel').value);
+            var optType=document.getElementById('exoticOptionType').value;
+            var numPaths=parseInt(document.getElementById('exoticPaths').value);
+            var steps=252,dt=p.T/steps;var payoffs=[];
+            for(var sim=0;sim<numPaths;sim++){
+                var s=p.S,sumS=p.S,minS=p.S,maxS=p.S,hit=false;
+                for(var t=0;t<steps;t++){
+                    var z=Math.sqrt(-2*Math.log(Math.random()))*Math.cos(2*Math.PI*Math.random());
+                    s=s*Math.exp((p.r-0.5*p.sigma*p.sigma)*dt+p.sigma*Math.sqrt(dt)*z);
+                    sumS+=s;minS=Math.min(minS,s);maxS=Math.max(maxS,s);
+                    if(exType.indexOf('down')>=0&&s<=barrier)hit=true;
+                    if(exType.indexOf('up')>=0&&s>=barrier)hit=true;
+                }
+                var ST=s,avgS=sumS/(steps+1);var payoff=0;
+                if(exType.indexOf('barrier')===0){var vanilla=optType==='call'?Math.max(ST-p.K,0):Math.max(p.K-ST,0);if(exType.indexOf('-out')>=0)payoff=hit?0:vanilla;else payoff=hit?vanilla:0;}
+                else if(exType.indexOf('asian')===0){payoff=optType==='call'?Math.max(avgS-p.K,0):Math.max(p.K-avgS,0);}
+                else if(exType==='digital-cash'){payoff=(optType==='call'?(ST>p.K?1:0):(ST<p.K?1:0));}
+                else if(exType==='digital-asset'){payoff=(optType==='call'?(ST>p.K?ST:0):(ST<p.K?ST:0));}
+                else if(exType==='lookback-fixed'){payoff=optType==='call'?Math.max(maxS-p.K,0):Math.max(p.K-minS,0);}
+                else if(exType==='lookback-floating'){payoff=optType==='call'?Math.max(ST-minS,0):Math.max(maxS-ST,0);}
+                payoffs.push(payoff);
+            }
+            var discF=Math.exp(-p.r*p.T);var mean=payoffs.reduce(function(a,b){return a+b;},0)/numPaths;
+            var price=mean*discF;
+            var variance=payoffs.reduce(function(a,b){return a+(b-mean)*(b-mean);},0)/(numPaths-1);
+            var ci=1.96*Math.sqrt(variance)/Math.sqrt(numPaths)*discF;
+            var vanillaBS=new BlackScholesModel(p.S,p.K,p.T,p.r,p.sigma);
+            var vanillaPrice=optType==='call'?vanillaBS.callPrice():vanillaBS.putPrice();
+            var names={'barrier-down-out':'Down-and-Out Barrier','barrier-down-in':'Down-and-In Barrier','barrier-up-out':'Up-and-Out Barrier','barrier-up-in':'Up-and-In Barrier','asian-arithmetic':'Asian (Arithmetic)','asian-geometric':'Asian (Geometric)','digital-cash':'Digital Cash-or-Nothing','digital-asset':'Digital Asset-or-Nothing','lookback-fixed':'Lookback (Fixed Strike)','lookback-floating':'Lookback (Floating Strike)'};
+            document.getElementById('exoticResults').innerHTML=
+                '<div class="row mb-4 g-3">'+
+                    '<div class="col-md-4"><div class="price-card-modern" style="border-left:3px solid #f093fb"><div class="price-card-header">'+(names[exType]||exType)+'</div><div class="price-value">$'+price.toFixed(4)+'</div><div class="price-meta">MC &plusmn;'+ci.toFixed(4)+'</div></div></div>'+
+                    '<div class="col-md-4"><div class="price-card-modern"><div class="price-card-header">Vanilla '+optType+' (BS)</div><div class="price-value">$'+vanillaPrice.toFixed(4)+'</div><div class="price-meta">Benchmark</div></div></div>'+
+                    '<div class="col-md-4"><div class="price-card-modern"><div class="price-card-header">Exotic Premium</div><div class="price-value">'+((price/vanillaPrice-1)*100).toFixed(1)+'%</div><div class="price-meta">vs Vanilla</div></div></div>'+
+                '</div>'+
+                '<div class="validation-section"><h6 class="validation-title">Simulation Details</h6><div class="row">'+
+                    '<div class="col-md-3"><div class="validation-item"><span>Paths:</span><strong>'+numPaths.toLocaleString()+'</strong></div></div>'+
+                    '<div class="col-md-3"><div class="validation-item"><span>Steps:</span><strong>'+steps+'</strong></div></div>'+
+                    '<div class="col-md-3"><div class="validation-item"><span>Type:</span><strong>'+optType+'</strong></div></div>'+
+                    '<div class="col-md-3"><div class="validation-item"><span>Barrier:</span><strong>'+(exType.indexOf('barrier')>=0?'$'+barrier:'N/A')+'</strong></div></div>'+
+                '</div></div>';
+        }
+    </script>
+</body>
+</html>
