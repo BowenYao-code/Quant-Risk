@@ -59,9 +59,9 @@
             </div>
 
             <!-- VaR / CVaR Section -->
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="calculator-card">
+            <div class="row g-3">
+                <div class="col-lg-4 d-flex">
+                    <div class="calculator-card w-100">
                         <div class="card-header"><h5><i class="fas fa-shield-alt me-2"></i>VaR / CVaR</h5></div>
                         <div class="p-3">
                             <div class="input-group-modern mb-3">
@@ -81,8 +81,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8">
-                    <div class="results-card-modern">
+                <div class="col-lg-8 d-flex">
+                    <div class="results-card-modern w-100">
                         <div class="card-header"><h5><i class="fas fa-chart-pie me-2"></i>Risk Analysis</h5></div>
                         <div id="riskResults" class="results-content">
                             <div class="results-placeholder text-center py-3">
@@ -95,9 +95,9 @@
             </div>
 
             <!-- Implied Vol Section -->
-            <div class="row g-4 mt-3">
-                <div class="col-lg-4">
-                    <div class="calculator-card">
+            <div class="row g-3 mt-2">
+                <div class="col-lg-4 d-flex">
+                    <div class="calculator-card w-100">
                         <div class="card-header"><h5><i class="fas fa-brain me-2"></i>Implied Volatility</h5></div>
                         <div class="p-3">
                             <div class="input-group-modern mb-3">
@@ -117,8 +117,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8">
-                    <div class="results-card-modern">
+                <div class="col-lg-8 d-flex">
+                    <div class="results-card-modern w-100">
                         <div class="card-header"><h5><i class="fas fa-brain me-2"></i>Implied Volatility Analysis</h5></div>
                         <div id="ivResults" class="results-content">
                             <div class="results-placeholder text-center py-3">
@@ -131,9 +131,9 @@
             </div>
 
             <!-- Arbitrage Section -->
-            <div class="row g-4 mt-3">
-                <div class="col-lg-4">
-                    <div class="calculator-card">
+            <div class="row g-3 mt-2">
+                <div class="col-lg-4 d-flex">
+                    <div class="calculator-card w-100">
                         <div class="card-header"><h5><i class="fas fa-balance-scale me-2"></i>Arbitrage Detection</h5></div>
                         <div class="p-3">
                             <div class="input-group-modern mb-3">
@@ -149,38 +149,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8">
-                    <div class="results-card-modern">
+                <div class="col-lg-8 d-flex">
+                    <div class="results-card-modern w-100">
                         <div class="card-header"><h5><i class="fas fa-balance-scale me-2"></i>Arbitrage Analysis</h5></div>
                         <div id="arbitrageResults" class="results-content">
                             <div class="results-placeholder text-center py-3">
                                 <i class="fas fa-balance-scale fa-2x text-muted mb-2"></i>
                                 <h6 class="text-muted">Detect pricing inconsistencies &amp; arbitrage opportunities</h6>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Theory -->
-            <div class="row g-3 mt-3">
-                <div class="col-lg-6">
-                    <div class="formula-card">
-                        <div class="formula-header"><i class="fas fa-shield-alt"></i><h5>Value at Risk &amp; Expected Shortfall</h5></div>
-                        <div class="formula-body">
-                            <div class="formula-block">$$\text{VaR}_\alpha = -\inf\{x : P(L \le x) \ge \alpha\}$$</div>
-                            <div class="formula-detail">$$\text{ES}_\alpha = \frac{1}{1-\alpha}\int_\alpha^1 \text{VaR}_u\,du$$</div>
-                            <p class="formula-note">VaR gives the maximum loss at confidence $\alpha$. ES (CVaR) is the expected loss given that VaR is exceeded.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="formula-card">
-                        <div class="formula-header"><i class="fas fa-balance-scale"></i><h5>Put-Call Parity &amp; Arbitrage</h5></div>
-                        <div class="formula-body">
-                            <div class="formula-block">$$C - P = S_0 - K e^{-rT}$$</div>
-                            <div class="formula-detail">$$\varepsilon = |C - P - S_0 + Ke^{-rT}| \approx 0$$</div>
-                            <p class="formula-note">Non-zero $\varepsilon$ implies arbitrage opportunity or pricing error.</p>
                         </div>
                     </div>
                 </div>

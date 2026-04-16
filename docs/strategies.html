@@ -56,11 +56,11 @@
                 </div>
             </div>
 
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="calculator-card strategy-builder-card">
+            <div class="row g-3">
+                <div class="col-lg-4 d-flex">
+                    <div class="calculator-card strategy-builder-card w-100">
                         <div class="card-header"><h5><i class="fas fa-chess me-2"></i>Select Strategy</h5></div>
-                        <div class="p-4">
+                        <div class="p-3">
                             <div class="strategy-presets">
                                 <button class="strategy-btn active" data-strategy="bull-call-spread" onclick="selectStrategy(this)"><i class="fas fa-arrow-up"></i> Bull Call Spread</button>
                                 <button class="strategy-btn" data-strategy="bear-put-spread" onclick="selectStrategy(this)"><i class="fas fa-arrow-down"></i> Bear Put Spread</button>
@@ -73,54 +73,26 @@
                                 <button class="strategy-btn" data-strategy="ratio-spread" onclick="selectStrategy(this)"><i class="fas fa-percent"></i> Ratio Call Spread</button>
                                 <button class="strategy-btn" data-strategy="calendar-spread" onclick="selectStrategy(this)"><i class="fas fa-calendar-alt"></i> Calendar Spread</button>
                             </div>
-                            <div class="strategy-info mt-3" id="strategyInfo">
+                            <div class="strategy-info mt-2" id="strategyInfo">
                                 <h6 class="text-primary">Bull Call Spread</h6>
-                                <p class="small text-muted mb-2">Buy lower-strike call, sell higher-strike call. Moderately bullish with capped risk and reward.</p>
+                                <p class="small text-muted mb-1">Buy lower-strike call, sell higher-strike call. Moderately bullish with capped risk and reward.</p>
                                 <div class="strategy-meta">
                                     <span class="badge bg-success">Limited Risk</span>
                                     <span class="badge bg-warning text-dark">Limited Profit</span>
                                     <span class="badge bg-info">Net Debit</span>
                                 </div>
                             </div>
-                            <button class="btn-modern btn-calculate w-100 mt-3" onclick="buildStrategy()"><i class="fas fa-chess me-2"></i>Build &amp; Visualize</button>
-                        </div>
-                    </div>
-
-                    <!-- Single Payoff -->
-                    <div class="calculator-card mt-4">
-                        <div class="card-header"><h5><i class="fas fa-chart-area me-2"></i>Single Payoff</h5></div>
-                        <div class="p-4">
-                            <div class="input-group-modern mb-3">
-                                <label class="form-label-modern">Position Type</label>
-                                <select class="form-control-modern" id="payoffType">
-                                    <option value="long-call">Long Call</option>
-                                    <option value="long-put">Long Put</option>
-                                    <option value="short-call">Short Call</option>
-                                    <option value="short-put">Short Put</option>
-                                    <option value="covered-call">Covered Call</option>
-                                    <option value="protective-put">Protective Put</option>
-                                </select>
-                            </div>
-                            <button class="btn-modern btn-calculate w-100" onclick="generatePayoff()"><i class="fas fa-chart-area me-2"></i>Draw Payoff</button>
+                            <button class="btn-modern btn-calculate w-100 mt-2" onclick="buildStrategy()"><i class="fas fa-chess me-2"></i>Build &amp; Visualize</button>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8">
-                    <div class="results-card-modern">
+                <div class="col-lg-8 d-flex">
+                    <div class="results-card-modern w-100">
                         <div class="card-header"><h5><i class="fas fa-chart-area me-2"></i>Strategy Payoff &amp; Analysis</h5></div>
-                        <div id="strategyResults" class="results-content" style="min-height:550px;">
+                        <div id="strategyResults" class="results-content">
                             <div class="results-placeholder text-center py-3">
                                 <i class="fas fa-chess fa-2x text-muted mb-2"></i>
                                 <h6 class="text-muted">Select a strategy and click Build to see payoff diagram, breakeven points, max profit/loss</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="results-card-modern mt-4">
-                        <div class="card-header"><h5><i class="fas fa-chart-area me-2"></i>Single Position Payoff</h5></div>
-                        <div id="payoffResults" class="results-content" style="min-height:450px;">
-                            <div class="results-placeholder text-center py-3">
-                                <i class="fas fa-chart-area fa-2x text-muted mb-2"></i>
-                                <h6 class="text-muted">Interactive P&amp;L payoff diagrams with breakeven analysis</h6>
                             </div>
                         </div>
                     </div>

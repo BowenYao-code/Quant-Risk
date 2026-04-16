@@ -59,11 +59,11 @@
                 </div>
             </div>
 
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="calculator-card">
+            <div class="row g-3">
+                <div class="col-lg-4 d-flex">
+                    <div class="calculator-card w-100">
                         <div class="card-header"><h5><i class="fas fa-dice me-2"></i>Simulation Config</h5></div>
-                        <div class="p-4">
+                        <div class="p-3">
                             <div class="input-group-modern mb-3">
                                 <label class="form-label-modern">Simulations</label>
                                 <select class="form-control-modern" id="mcSimulations">
@@ -73,7 +73,7 @@
                                     <option value="500000">500,000</option>
                                 </select>
                             </div>
-                            <div class="input-group-modern mb-4">
+                            <div class="input-group-modern mb-3">
                                 <label class="form-label-modern">Variance Reduction</label>
                                 <select class="form-control-modern" id="mcTechnique">
                                     <option value="standard">Standard MC</option>
@@ -81,16 +81,31 @@
                                     <option value="control">Control Variates</option>
                                 </select>
                             </div>
-                            <button class="btn-modern btn-calculate w-100 mb-3" onclick="runMonteCarloAnalysis()"><i class="fas fa-play me-2"></i>Run Simulation</button>
+                            <button class="btn-modern btn-calculate w-100 mb-2" onclick="runMonteCarloAnalysis()"><i class="fas fa-play me-2"></i>Run Simulation</button>
                             <button class="btn-modern btn-secondary-modern w-100" onclick="runConvergenceStudy()"><i class="fas fa-chart-line me-2"></i>Convergence Study</button>
                         </div>
                     </div>
+                </div>
+                <div class="col-lg-8 d-flex">
+                    <div class="results-card-modern w-100">
+                        <div class="card-header"><h5><i class="fas fa-chart-area me-2"></i>Simulation Results</h5></div>
+                        <div id="montecarloResults" class="results-content">
+                            <div class="results-placeholder text-center py-3">
+                                <i class="fas fa-dice fa-2x text-muted mb-2"></i>
+                                <h6 class="text-muted">Stochastic simulation with variance reduction &amp; convergence analysis</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                    <!-- Exotic Options -->
-                    <div class="calculator-card mt-4">
+            <!-- Exotic Options Row -->
+            <div class="row g-3 mt-3">
+                <div class="col-lg-4 d-flex">
+                    <div class="calculator-card w-100">
                         <div class="card-header"><h5><i class="fas fa-gem me-2"></i>Exotic Options (MC)</h5></div>
-                        <div class="p-4">
-                            <div class="input-group-modern mb-3">
+                        <div class="p-3">
+                            <div class="input-group-modern mb-2">
                                 <label class="form-label-modern">Exotic Type</label>
                                 <select class="form-control-modern" id="exoticType">
                                     <option value="barrier-down-out">Down-and-Out Barrier</option>
@@ -105,18 +120,11 @@
                                     <option value="lookback-floating">Lookback (Floating Strike)</option>
                                 </select>
                             </div>
-                            <div class="input-group-modern mb-3">
-                                <label class="form-label-modern">Barrier Level</label>
-                                <input type="number" class="form-control-modern" id="barrierLevel" value="90" step="1">
+                            <div class="row g-2 mb-2">
+                                <div class="col-6"><div class="input-group-modern"><label class="form-label-modern">Barrier</label><input type="number" class="form-control-modern" id="barrierLevel" value="90" step="1"></div></div>
+                                <div class="col-6"><div class="input-group-modern"><label class="form-label-modern">Type</label><select class="form-control-modern" id="exoticOptionType"><option value="call" selected>Call</option><option value="put">Put</option></select></div></div>
                             </div>
-                            <div class="input-group-modern mb-3">
-                                <label class="form-label-modern">Option Type</label>
-                                <select class="form-control-modern" id="exoticOptionType">
-                                    <option value="call" selected>Call</option>
-                                    <option value="put">Put</option>
-                                </select>
-                            </div>
-                            <div class="input-group-modern mb-4">
+                            <div class="input-group-modern mb-2">
                                 <label class="form-label-modern">MC Paths</label>
                                 <select class="form-control-modern" id="exoticPaths">
                                     <option value="50000" selected>50,000</option>
@@ -128,46 +136,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8">
-                    <div class="results-card-modern">
-                        <div class="card-header"><h5><i class="fas fa-chart-area me-2"></i>Simulation Results</h5></div>
-                        <div id="montecarloResults" class="results-content">
-                            <div class="results-placeholder text-center py-3">
-                                <i class="fas fa-dice fa-2x text-muted mb-2"></i>
-                                <h6 class="text-muted">Stochastic simulation with variance reduction &amp; convergence analysis</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="results-card-modern mt-4">
+                <div class="col-lg-8 d-flex">
+                    <div class="results-card-modern w-100">
                         <div class="card-header"><h5><i class="fas fa-gem me-2"></i>Exotic Option Results</h5></div>
                         <div id="exoticResults" class="results-content">
                             <div class="results-placeholder text-center py-3">
                                 <i class="fas fa-gem fa-2x text-muted mb-2"></i>
                                 <h6 class="text-muted">Barrier, Asian, Digital &amp; Lookback option pricing via Monte Carlo</h6>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Theory -->
-            <div class="row g-3 mt-3">
-                <div class="col-lg-6">
-                    <div class="formula-card">
-                        <div class="formula-header"><i class="fas fa-dice"></i><h5>Geometric Brownian Motion</h5></div>
-                        <div class="formula-body">
-                            <div class="formula-block">$$dS = \mu S\,dt + \sigma S\,dW_t$$</div>
-                            <div class="formula-detail">$$S_T = S_0 \exp\!\left[\left(r - \tfrac{\sigma^2}{2}\right)T + \sigma\sqrt{T}\,Z\right]$$</div>
-                            <p class="formula-note">Risk-neutral pricing: simulate terminal prices, discount expected payoffs at the risk-free rate.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="formula-card">
-                        <div class="formula-header"><i class="fas fa-compress-arrows-alt"></i><h5>Variance Reduction</h5></div>
-                        <div class="formula-body">
-                            <div class="formula-block">$$\hat{C}_{anti} = \frac{1}{2}\left[f(Z) + f(-Z)\right]$$</div>
-                            <p class="formula-note"><strong>Antithetic</strong>: uses $Z$ and $-Z$. <strong>Control Variates</strong>: adjusts with known-expectation control. Both reduce standard error for the same sim count.</p>
                         </div>
                     </div>
                 </div>
