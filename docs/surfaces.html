@@ -44,6 +44,7 @@
                 <span class="section-badge">Visualization</span>
                 <h2 class="section-title gradient-text">3D Volatility &amp; Greeks Surfaces</h2>
                 <p class="section-subtitle">Interactive Plotly 3D surfaces for price, delta, gamma, vega, theta across Spot &times; Volatility space</p>
+                        <p class="text-muted small mt-2 mb-0" style="max-width: 720px; margin-left: auto; margin-right: auto;">Drawn from experience calibrating and interpreting volatility surfaces in production — visualizing how option prices and Greeks evolve across the strike-maturity-volatility space, identifying skew and term structure patterns, and understanding the surface dynamics that drive mark-to-market P&L and hedging adjustments.</p>
             </div>
 
             <div class="shared-params-bar mb-4">
@@ -56,11 +57,11 @@
                 </div>
             </div>
 
-            <div class="row g-4">
-                <div class="col-lg-3">
-                    <div class="calculator-card">
+            <div class="row g-3">
+                <div class="col-lg-4 d-flex">
+                    <div class="calculator-card w-100">
                         <div class="card-header"><h5><i class="fas fa-cube me-2"></i>Surface Config</h5></div>
-                        <div class="p-4">
+                        <div class="p-3">
                             <div class="input-group-modern mb-3">
                                 <label class="form-label-modern">Surface Type</label>
                                 <select class="form-control-modern" id="surfaceType">
@@ -71,7 +72,7 @@
                                     <option value="theta">Theta</option>
                                 </select>
                             </div>
-                            <div class="input-group-modern mb-4">
+                            <div class="input-group-modern mb-3">
                                 <label class="form-label-modern">Option Type</label>
                                 <select class="form-control-modern" id="surfaceOptionType">
                                     <option value="call" selected>Call</option>
@@ -83,8 +84,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-9">
-                    <div class="results-card-modern">
+                <div class="col-lg-8 d-flex">
+                    <div class="results-card-modern w-100">
                         <div class="card-header"><h5><i class="fas fa-cube me-2"></i>3D Interactive Surface</h5></div>
                         <div id="surfaceResults" class="results-content" style="height: 600px;">
                             <div class="results-placeholder text-center py-3">
@@ -101,7 +102,7 @@
 
     <footer class="py-2 text-center">
         <div class="container">
-            <p class="mb-2">&copy; 2025 Bowen Yao. All rights reserved.</p>
+            <p class="mb-2">&copy; 2026 Bowen Yao. All rights reserved.</p>
             <div class="footer-links">
                 <a href="index.html">Home</a><span class="mx-2">&bull;</span>
                 <a href="https://github.com/BowenYao-code" target="_blank">GitHub</a><span class="mx-2">&bull;</span>

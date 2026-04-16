@@ -6,7 +6,7 @@
 
 **Professional Derivatives Pricing & Risk Management System**
 
-[Live Demo](https://bowenyao-code.github.io/Risk-Management/) | [Documentation](#documentation) | [Quick Start](#quick-start)
+[Live Demo](https://bowenyao-code.github.io/Quant-Risk/) | [Documentation](#documentation) | [Quick Start](#quick-start)
 
 </div>
 
@@ -238,8 +238,8 @@ CI = 1.96 * σ_MC / √n
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/BowenYao-code/Risk-Management.git
-   cd Risk-Management
+   git clone https://github.com/BowenYao-code/Quant-Risk.git
+   cd Quant-Risk
    ```
 2. **Serve static files locally:**
 
@@ -249,7 +249,7 @@ CI = 1.96 * σ_MC / √n
    # Visit http://localhost:8000
    ```
 3. **Or access the live demo:**
-   Visit: https://bowenyao-code.github.io/Risk-Management/
+   Visit: https://bowenyao-code.github.io/Quant-Risk/
 
 ### Full Development Version (Flask)
 
@@ -337,7 +337,7 @@ flake8 src/
 ### File Structure
 
 ```
-Risk-Management/
+Quant-Risk/
 ├── docs/                           # GitHub Pages deployment
 │   ├── index.html                 # Main application interface
 │   ├── css/style.css              # Professional styling
@@ -372,7 +372,7 @@ Risk-Management/
 ```bash
 # Enable GitHub Pages in repository settings
 # Source: main branch /docs folder
-# Access: https://bowenyao-code.github.io/Risk-Management/
+# Access: https://bowenyao-code.github.io/Quant-Risk/
 ```
 
 ### Local Development
@@ -469,7 +469,7 @@ Contributions are welcome from quantitative finance professionals and developers
 
 ```bash
 # Clone repository
-git clone https://github.com/BowenYao-code/Risk-Management.git
+git clone https://github.com/BowenYao-code/Quant-Risk.git
 
 # Install development dependencies
 pip install -r requirements-dev.txt
@@ -524,6 +524,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 *Demonstrating expertise in risk management, derivatives pricing, and financial technology development*
 
-[Back to Top](#quantitative-risk-management-platform)
+[Back to Top](#quantitative-Quant-Risk-platform)
 
 </div>
