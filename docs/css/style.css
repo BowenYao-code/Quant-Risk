@@ -62,27 +62,27 @@ body {
 }
 .section-title {
     font-family: 'Calisto MT', 'Cambria', Georgia, serif;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 800;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
 }
 .section-subtitle {
     color: var(--text-muted);
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     max-width: 600px;
     margin: 0 auto;
 }
 .section-badge {
     display: inline-block;
-    padding: 0.3rem 1rem;
-    font-size: 0.75rem;
+    padding: 0.2rem 0.8rem;
+    font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: #667eea;
     border: 1px solid rgba(102, 126, 234, 0.3);
     border-radius: 50px;
-    margin-bottom: 1rem;
+    margin-bottom: 0.6rem;
     background: rgba(102, 126, 234, 0.08);
 }
 .section-dark {
@@ -770,19 +770,19 @@ body {
     height: 100%;
 }
 .card-header {
-    padding: 1rem 1.2rem;
+    padding: 0.7rem 1rem;
     border-bottom: 1px solid var(--border-color);
     background: rgba(255, 255, 255, 0.02);
 }
 .card-header h5 {
     font-family: 'Calisto MT', 'Cambria', Georgia, serif;
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     font-weight: 700;
     color: var(--text-secondary);
     margin: 0;
 }
 .results-content {
-    padding: 1.5rem;
+    padding: 1rem;
 }
 .results-placeholder {
     opacity: 0.6;
@@ -1031,46 +1031,46 @@ select.form-control-modern {
 .formula-header {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    padding: 1rem 1.2rem;
+    gap: 0.6rem;
+    padding: 0.7rem 1rem;
     border-bottom: 1px solid var(--border-color);
     background: rgba(255, 255, 255, 0.02);
 }
 .formula-header i {
     color: #667eea;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 .formula-header h5 {
     font-family: 'Calisto MT', 'Cambria', Georgia, serif;
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     font-weight: 700;
     margin: 0;
 }
 .formula-body {
-    padding: 1.2rem;
+    padding: 0.8rem;
 }
 .formula-block {
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(102, 126, 234, 0.15);
     border-radius: var(--radius-sm);
-    padding: 1rem;
-    margin-bottom: 0.8rem;
+    padding: 0.6rem;
+    margin-bottom: 0.5rem;
     text-align: center;
     overflow-x: auto;
 }
 .formula-detail {
     background: rgba(0, 0, 0, 0.15);
     border-radius: var(--radius-sm);
-    padding: 0.8rem;
-    margin-bottom: 0.8rem;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     overflow-x: auto;
 }
 .formula-note {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     color: var(--text-muted);
-    line-height: 1.5;
+    line-height: 1.4;
     margin: 0;
 }
 
@@ -1870,19 +1870,7 @@ body {
 }
 
 /* ===== Feature Cards ===== */
-.section-title {
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
-    margin-bottom: var(--spacing-sm);
-    text-align: center;
-}
-
-.section-subtitle {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    text-align: center;
-    margin-bottom: var(--spacing-2xl);
-}
+/* section-title and section-subtitle defined earlier — these are legacy overrides */
 
 .feature-card {
     background: var(--card-bg);
