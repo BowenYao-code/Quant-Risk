@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Black-Scholes Option Pricing Lab â€” Multi-model comparison with BS, Monte Carlo, and Binomial Tree">
+    <title>Pricing Lab | Bowen Yao â€” Quant Platform</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x1F4CA;</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
+    <script>window.MathJax={tex:{inlineMath:[['$','$']],displayMath:[['$$','$$']]}}</script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.min.js" async></script>
+</head>
+<body>
+    <!-- NAV -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-scrolled">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <span class="brand-icon">&#916;</span>
+                <span class="gradient-text">Quant</span><span class="text-light">Platform</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Modules</a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="pricing-lab.html"><i class="fas fa-calculator me-2"></i>Pricing Lab</a></li>
+                            <li><a class="dropdown-item" href="greeks.html"><i class="fas fa-chart-line me-2"></i>Greeks Analysis</a></li>
+                            <li><a class="dropdown-item" href="monte-carlo.html"><i class="fas fa-dice me-2"></i>Monte Carlo</a></li>
+                            <li><a class="dropdown-item" href="risk-metrics.html"><i class="fas fa-shield-alt me-2"></i>Risk Metrics</a></li>
+                            <li><a class="dropdown-item" href="strategies.html"><i class="fas fa-chess me-2"></i>Strategies</a></li>
+                            <li><a class="dropdown-item" href="surfaces.html"><i class="fas fa-cube me-2"></i>3D Surfaces</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Theory</a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="index.html#formulas"><i class="fas fa-square-root-alt me-2"></i>Mathematical Foundations</a></li>
+                            <li><a class="dropdown-item" href="index.html#features"><i class="fas fa-th-large me-2"></i>Platform Features</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="index.html#profile"><i class="fas fa-user me-2"></i>Profile</a></li>
+                            <li><a class="dropdown-item" href="index.html#technology"><i class="fas fa-microchip me-2"></i>Tech Stack</a></li>
+                            <li><a class="dropdown-item" href="index.html#contact"><i class="fas fa-envelope me-2"></i>Contact</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/BowenYao-code/Risk-Management" target="_blank">
+                            <i class="fab fa-github me-1"></i>GitHub
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO BANNER -->
+    <section class="py-5 section-dark" style="padding-top:120px!important">
+        <div class="container">
+            <div class="text-center mb-4">
+                <span class="section-badge">Interactive</span>
+                <h2 class="section-title gradient-text">Derivatives Pricing Lab</h2>
+                <p class="section-subtitle">Compare Black-Scholes analytical, Monte Carlo simulation, and Binomial Tree pricing side by side</p>
+            </div>
+
+            <!-- Shared Parameter Bar -->
+            <div class="shared-params-bar mb-4">
+                <div class="row g-2 align-items-end">
+                    <div class="col"><label class="form-label-mini">Spot (S)</label><input type="number" class="form-control-mini" id="spotPrice" value="100" step="1"></div>
+                    <div class="col"><label class="form-label-mini">Strike (K)</label><input type="number" class="form-control-mini" id="strikePrice" value="105" step="1"></div>
+                    <div class="col"><label class="form-label-mini">Time (T yr)</label><input type="number" class="form-control-mini" id="timeToExpiry" value="0.25" step="0.01"></div>
+                    <div class="col"><label class="form-label-mini">Rate (r%)</label><input type="number" class="form-control-mini" id="riskFreeRate" value="5" step="0.1"></div>
+                    <div class="col"><label class="form-label-mini">Vol (&sigma;%)</label><input type="number" class="form-control-mini" id="volatility" value="20" step="1"></div>
+                    <div class="col-auto"><button class="btn-mini-calculate" onclick="calculateEnhancedPricing()"><i class="fas fa-bolt me-1"></i>Calculate</button></div>
+                </div>
+            </div>
+
+            <!-- Results -->
+            <div class="results-card-modern">
+                <div class="card-header"><h5><i class="fas fa-chart-bar me-2"></i>Multi-Model Comparison</h5></div>
+                <div id="calculationResults" class="results-content">
+                    <div class="results-placeholder text-center py-5">
+                        <i class="fas fa-calculator fa-3x text-muted mb-3"></i>
+                        <h6 class="text-muted">Compare Black-Scholes, Monte Carlo, and Binomial Tree pricing</h6>
+                        <p class="text-muted small">Click <strong>Calculate</strong> to run all three models simultaneously</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Theory -->
+            <div class="row g-4 mt-5">
+                <div class="col-lg-6">
+                    <div class="formula-card">
+                        <div class="formula-header"><i class="fas fa-square-root-alt"></i><h5>Black-Scholes-Merton Model</h5></div>
+                        <div class="formula-body">
+                            <div class="formula-block">$$C = S_0 N(d_1) - K e^{-rT} N(d_2)$$</div>
+                            <div class="formula-detail">$$d_1 = \frac{\ln(S_0/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}}, \quad d_2 = d_1 - \sigma\sqrt{T}$$</div>
+                            <p class="formula-note">Where $N(\cdot)$ is the standard normal CDF.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="formula-card">
+                        <div class="formula-header"><i class="fas fa-balance-scale"></i><h5>Put-Call Parity</h5></div>
+                        <div class="formula-body">
+                            <div class="formula-block">$$C - P = S_0 - K e^{-rT}$$</div>
+                            <p class="formula-note">Fundamental no-arbitrage relationship for European options. Any deviation implies pricing error or arbitrage opportunity.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-4 text-center">
+        <div class="container">
+            <p class="mb-2">&copy; 2025 Bowen Yao. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="index.html">Home</a><span class="mx-2">&bull;</span>
+                <a href="https://github.com/BowenYao-code/Risk-Management" target="_blank">GitHub</a><span class="mx-2">&bull;</span>
+                <a href="mailto:bowenyao984@gmail.com">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/black-scholes.js"></script>
+    <script src="js/advanced-features.js"></script>
+    <script>
+        function getParams(){
+            return {
+                S:parseFloat(document.getElementById('spotPrice').value),
+                K:parseFloat(document.getElementById('strikePrice').value),
+                T:parseFloat(document.getElementById('timeToExpiry').value),
+                r:parseFloat(document.getElementById('riskFreeRate').value)/100,
+                sigma:parseFloat(document.getElementById('volatility').value)/100
+            };
+        }
+        var enhancedPricing;
+        function calculateEnhancedPricing(){
+            try{
+                var p=getParams();p.optionType='call';
+                if(!enhancedPricing)enhancedPricing=new EnhancedOptionPricing();
+                var r=enhancedPricing.calculateAllModels(p);
+                var bs2=new BlackScholesModel(p.S,p.K,p.T,p.r,p.sigma);
+                var putBS=bs2.putPrice();
+                var callG=bs2.getAllGreeks('call'),putG=bs2.getAllGreeks('put');
+                var parity=bs2.putCallParity();
+                var moneyness=bs2.moneyness();
+                document.getElementById('calculationResults').innerHTML=
+                    '<div class="row mb-4 g-3">'+
+                        '<div class="col-md-4"><div class="price-card-modern call-option"><div class="price-card-header"><i class="fas fa-chart-bar me-1"></i> Black-Scholes</div><div class="price-value">$'+r.blackScholes.price.toFixed(4)+'</div><div class="price-meta">Call &mdash; Analytical</div></div></div>'+
+                        '<div class="col-md-4"><div class="price-card-modern" style="border-left:3px solid #4facfe"><div class="price-card-header"><i class="fas fa-dice me-1"></i> Monte Carlo</div><div class="price-value">$'+r.monteCarlo.price.toFixed(4)+'</div><div class="price-meta">'+Number(r.monteCarlo.simulations).toLocaleString()+' sims</div></div></div>'+
+                        '<div class="col-md-4"><div class="price-card-modern" style="border-left:3px solid #38ef7d"><div class="price-card-header"><i class="fas fa-project-diagram me-1"></i> Binomial Tree</div><div class="price-value">$'+r.binomial.price.toFixed(4)+'</div><div class="price-meta">'+r.binomial.accuracy+'</div></div></div>'+
+                    '</div>'+
+                    '<div class="row mb-4 g-3">'+
+                        '<div class="col-md-6"><div class="price-card-modern put-option"><div class="price-card-header"><i class="fas fa-arrow-down me-1"></i> Put (BS)</div><div class="price-value">$'+putBS.toFixed(4)+'</div><div class="price-meta">Black-Scholes Put</div></div></div>'+
+                        '<div class="col-md-6"><div class="price-card-modern" style="border-left:3px solid #f5576c"><div class="price-card-header"><i class="fas fa-info-circle me-1"></i> Moneyness</div><div class="price-value">'+moneyness.status+'</div><div class="price-meta">S/K = '+moneyness.ratio.toFixed(4)+' &mdash; '+moneyness.description+'</div></div></div>'+
+                    '</div>'+
+                    '<div class="row mb-3 g-3">'+
+                        '<div class="col-md-6"><h6 class="greeks-section-title call-title">Call Greeks</h6><div class="greeks-modern-grid">'+
+                            '<div class="greek-modern-item"><div class="greek-symbol">&Delta;</div><div class="greek-details"><div class="greek-name">Delta</div><div class="greek-value">'+callG.delta.toFixed(6)+'</div></div></div>'+
+                            '<div class="greek-modern-item"><div class="greek-symbol">&Gamma;</div><div class="greek-details"><div class="greek-name">Gamma</div><div class="greek-value">'+callG.gamma.toFixed(6)+'</div></div></div>'+
+                            '<div class="greek-modern-item"><div class="greek-symbol">&Theta;</div><div class="greek-details"><div class="greek-name">Theta</div><div class="greek-value">'+callG.theta.toFixed(6)+'</div></div></div>'+
+                            '<div class="greek-modern-item"><div class="greek-symbol">&nu;</div><div class="greek-details"><div class="greek-name">Vega</div><div class="greek-value">'+callG.vega.toFixed(6)+'</div></div></div>'+
+                            '<div class="greek-modern-item"><div class="greek-symbol">&rho;</div><div class="greek-details"><div class="greek-name">Rho</div><div class="greek-value">'+callG.rho.toFixed(6)+'</div></div></div>'+
+                        '</div></div>'+
+                        '<div class="col-md-6"><h6 class="greeks-section-title put-title">Put Greeks</h6><div class="greeks-modern-grid">'+
+                            '<div class="greek-modern-item"><div class="greek-symbol">&Delta;</div><div class="greek-details"><div class="greek-name">Delta</div><div class="greek-value">'+putG.delta.toFixed(6)+'</div></div></div>'+
+                            '<div class="greek-modern-item"><div class="greek-symbol">&Gamma;</div><div class="greek-details"><div class="greek-name">Gamma</div><div class="greek-value">'+putG.gamma.toFixed(6)+'</div></div></div>'+
+                            '<div class="greek-modern-item"><div class="greek-symbol">&Theta;</div><div class="greek-details"><div class="greek-name">Theta</div><div class="greek-value">'+putG.theta.toFixed(6)+'</div></div></div>'+
+                            '<div class="greek-modern-item"><div class="greek-symbol">&nu;</div><div class="greek-details"><div class="greek-name">Vega</div><div class="greek-value">'+putG.vega.toFixed(6)+'</div></div></div>'+
+                            '<div class="greek-modern-item"><div class="greek-symbol">&rho;</div><div class="greek-details"><div class="greek-name">Rho</div><div class="greek-value">'+putG.rho.toFixed(6)+'</div></div></div>'+
+                        '</div></div>'+
+                    '</div>'+
+                    '<div class="validation-section"><h6 class="validation-title"><i class="fas fa-check-double me-2"></i>Model Convergence &amp; Validation</h6><div class="row">'+
+                        '<div class="col-md-4"><div class="validation-item"><span>BS vs MC:</span><strong>$'+r.comparison.bsMcDifference.toFixed(6)+'</strong></div></div>'+
+                        '<div class="col-md-4"><div class="validation-item"><span>BS vs Binomial:</span><strong>$'+r.comparison.bsBinomialDifference.toFixed(6)+'</strong></div></div>'+
+                        '<div class="col-md-4"><div class="validation-item"><span>Put-Call Parity:</span><strong>'+parity.difference.toFixed(8)+'</strong> <span class="'+(parity.holds?'text-success':'text-danger')+'">'+(parity.holds?'&#10003; Holds':'&#10007; Violation')+'</span></div></div>'+
+                    '</div></div>';
+            }catch(e){document.getElementById('calculationResults').innerHTML='<div class="text-center py-4 text-danger"><i class="fas fa-exclamation-triangle fa-2x mb-2"></i><p>'+e.message+'</p></div>';}
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,2184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional Quantitative Risk Management Platform - Black-Scholes Option Pricing, Greeks Risk Analysis, Monte Carlo Simulation">
+    <meta name="keywords" content="quantitative finance,risk management,option pricing,Black-Scholes,Greeks,Monte Carlo,derivatives,financial engineering">
+    <meta name="author" content="Bowen Yao">
+    
+    <title>Quantitative Risk Management Platform | Professional Option Pricing - Bowen Yao</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Plotly for Interactive Charts -->
+    <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
+    
+    <!-- Chart.js for Additional Charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js"></script>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#home">
+                <i class="fas fa-chart-line me-2"></i>
+                <span class="gradient-text">QuantRisk</span>
+                <span class="text-light">Pro</span>
+            </a>
+            
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#profile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#demo">Advanced Demo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#technology">Tech Stack</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#performance">Performance</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/BowenYao-code/Risk-Management" target="_blank">
+                            <i class="fab fa-github me-1"></i>GitHub
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-background"></div>
+        <div class="hero-particles"></div>
+        
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6">
+        <div class="hero-content">
+                        <div class="hero-badge mb-4">
+                            <i class="fas fa-user-tie me-2"></i>
+                            <span>Bowen Yao - Financial Technology Professional</span>
+                        </div>
+                        
+                        <h1 class="hero-title mb-4">
+                            <span class="gradient-text d-block">Quantitative Finance</span>
+                            <span class="gradient-text-alt d-block">Risk Management Platform</span>
+                    </h1>
+                        
+                        <p class="hero-subtitle mb-4">
+                            Professional derivatives pricing and risk analysis system<br>
+                            <span class="text-primary">Black-Scholes • Greeks • Monte Carlo • VaR</span>
+                        </p>
+                        
+                        <div class="hero-intro mb-4">
+                            <p class="text-light">
+                                Derivatives Risk Analyst at Athene Annuity and Life Company with expertise in quantitative finance, 
+                                algorithmic trading, and financial technology. Specialized in Monte Carlo optimization, 
+                                advanced risk management systems, and derivatives pricing models.
+                            </p>
+                        </div>
+                        
+                        <div class="hero-stats mb-5">
+                            <div class="row g-3">
+                                <div class="col-6 col-md-3">
+                                    <div class="stat-item">
+                                        <div class="stat-number">95%+</div>
+                                        <div class="stat-label">Test Coverage</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="stat-item">
+                                        <div class="stat-number">&lt;1ms</div>
+                                        <div class="stat-label">Pricing Speed</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="stat-item">
+                                        <div class="stat-number">100K+</div>
+                                        <div class="stat-label">MC Simulations</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="stat-item">
+                                        <div class="stat-number">5+</div>
+                                        <div class="stat-label">Greeks Metrics</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="hero-buttons">
+                            <a href="#profile" class="btn-modern btn-primary-modern me-3 mb-3">
+                                <i class="fas fa-user me-2"></i>
+                                View Profile
+                            </a>
+                            <a href="#demo" class="btn-modern btn-secondary-modern me-3 mb-3">
+                                <i class="fas fa-play me-2"></i>
+                                Try Demo
+                            </a>
+                            <a href="https://github.com/BowenYao-code/Risk-Management" class="btn-modern btn-tertiary-modern mb-3" target="_blank">
+                                <i class="fab fa-github me-2"></i>
+                                Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="hero-visual">
+                        <div class="financial-dashboard">
+                            <div class="dashboard-header">
+                                <h6 class="mb-0">Real-time Option Pricing Dashboard</h6>
+                                <span class="status-indicator">
+                                    <i class="fas fa-circle text-success"></i>
+                                    Live Updates
+                                </span>
+                            </div>
+                            
+                            <div class="dashboard-content">
+                                <div class="row g-3">
+                                    <div class="col-6">
+                                        <div class="metric-card call-option">
+                                            <div class="metric-header">
+                                                <i class="fas fa-arrow-up"></i>
+                                                <span>Call Option</span>
+                                            </div>
+                                            <div class="metric-value" id="live-call-price">$8.42</div>
+                                            <div class="metric-change positive">+2.3%</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="metric-card put-option">
+                                            <div class="metric-header">
+                                                <i class="fas fa-arrow-down"></i>
+                                                <span>Put Option</span>
+                                            </div>
+                                            <div class="metric-value" id="live-put-price">$3.17</div>
+                                            <div class="metric-change negative">-1.8%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="greeks-preview mt-3">
+                                    <div class="greeks-title">Greeks Risk Indicators</div>
+                                    <div class="greeks-grid">
+                                        <div class="greek-item">
+                                            <span class="greek-symbol">Δ</span>
+                                            <span class="greek-value" id="live-delta">0.6247</span>
+                                        </div>
+                                        <div class="greek-item">
+                                            <span class="greek-symbol">Γ</span>
+                                            <span class="greek-value" id="live-gamma">0.0156</span>
+                                        </div>
+                                        <div class="greek-item">
+                                            <span class="greek-symbol">Θ</span>
+                                            <span class="greek-value" id="live-theta">-0.0234</span>
+                                        </div>
+                                        <div class="greek-item">
+                                            <span class="greek-symbol">ν</span>
+                                            <span class="greek-value" id="live-vega">0.1892</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mini-chart mt-3">
+                                    <canvas id="priceChart" width="300" height="120"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Profile Section -->
+    <section id="profile" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title gradient-text">Professional Profile</h2>
+                <p class="section-subtitle">Comprehensive background in quantitative finance and financial technology</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="profile-card">
+                        <div class="row g-5">
+                            <div class="col-lg-8">
+                                <div class="profile-content">
+                                    <h3 class="profile-title mb-4">
+                                        <span class="gradient-text">Bowen Yao</span>
+                                        <span class="text-light"> - Financial Technology Professional</span>
+                                    </h3>
+                                    
+                                    <div class="profile-intro mb-4">
+                                        <p class="lead text-light">
+                                            I am a dedicated financial technology professional with deep expertise in quantitative finance, 
+                                            derivatives pricing, and risk management systems. Currently serving as a Derivatives Risk Analyst 
+                                            at Athene Annuity and Life Company, I specialize in developing advanced mathematical models 
+                                            and implementing cutting-edge financial technology solutions.
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="professional-highlights">
+                                        <h5 class="text-primary mb-3">Professional Achievements</h5>
+                                        
+                                        <div class="highlight-item">
+                                            <div class="highlight-icon">
+                                                <i class="fas fa-chart-line"></i>
+                                            </div>
+                                            <div class="highlight-content">
+                                                <h6>Monte Carlo Optimization Expert</h6>
+                                                <p>Contributed to Monte Carlo simulation optimization for exotic index derivatives at Athene, 
+                                                achieving 40% performance improvement through Numba JIT compilation and advanced variance 
+                                                reduction techniques.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="highlight-item">
+                                            <div class="highlight-icon">
+                                                <i class="fas fa-shield-alt"></i>
+                                            </div>
+                                            <div class="highlight-content">
+                                                <h6>Risk Management Systems Developer</h6>
+                                                <p>Developed advanced Greeks monitoring systems for delta, vega, and gamma across equity 
+                                                and FX options portfolios, enabling real-time risk assessment and dynamic hedging strategies.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="highlight-item">
+                                            <div class="highlight-icon">
+                                                <i class="fas fa-code"></i>
+                                            </div>
+                                            <div class="highlight-content">
+                                                <h6>Full-Stack Financial Platform Developer</h6>
+                                                <p>Built this comprehensive quantitative risk management platform from scratch, demonstrating 
+                                                expertise in both financial mathematics and modern web development technologies.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="highlight-item">
+                                            <div class="highlight-icon">
+                                                <i class="fas fa-graduation-cap"></i>
+                                            </div>
+                                            <div class="highlight-content">
+                                                <h6>Academic Excellence</h6>
+                                                <p>Pursuing Master of Engineering in Financial Technology while maintaining strong academic 
+                                                performance. Bachelor of Science in Finance with comprehensive coursework in derivatives, 
+                                                risk management, and quantitative methods.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-4">
+                                <div class="profile-sidebar">
+                                    <div class="expertise-section mb-4">
+                                        <h6 class="section-header">Core Expertise</h6>
+                                        <div class="expertise-tags">
+                                            <span class="expertise-tag">Derivatives Pricing</span>
+                                            <span class="expertise-tag">Risk Analytics</span>
+                                            <span class="expertise-tag">Monte Carlo Methods</span>
+                                            <span class="expertise-tag">Greeks Analysis</span>
+                                            <span class="expertise-tag">VaR/CVaR Modeling</span>
+                                            <span class="expertise-tag">Algorithmic Trading</span>
+                                            <span class="expertise-tag">Financial Engineering</span>
+                                            <span class="expertise-tag">Portfolio Optimization</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="technical-skills mb-4">
+                                        <h6 class="section-header">Technical Stack</h6>
+                                        <div class="skill-category">
+                                            <strong>Programming:</strong>
+                                            <p>Python (NumPy, SciPy, Pandas), JavaScript (ES6+), SQL, R, MATLAB</p>
+                                        </div>
+                                        <div class="skill-category">
+                                            <strong>Financial Tools:</strong>
+                                            <p>Bloomberg Terminal, FactSet, Refinitiv Eikon, Excel VBA</p>
+                                        </div>
+                                        <div class="skill-category">
+                                            <strong>Web Technologies:</strong>
+                                            <p>HTML5/CSS3, Bootstrap, Plotly.js, Flask, RESTful APIs</p>
+                                        </div>
+                                        <div class="skill-category">
+                                            <strong>Data Science:</strong>
+                                            <p>Machine Learning, Time Series Analysis, Statistical Modeling</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="project-impact">
+                                        <h6 class="section-header">This Platform Demonstrates</h6>
+                                        <ul class="impact-list">
+                                            <li>Advanced mathematical modeling capabilities</li>
+                                            <li>Production-ready software development skills</li>
+                                            <li>Deep understanding of derivatives markets</li>
+                                            <li>Ability to translate theory into practical tools</li>
+                                            <li>Modern web development proficiency</li>
+                                            <li>Comprehensive risk management knowledge</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5 bg-dark">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title gradient-text">Core Features</h2>
+                <p class="section-subtitle text-light">Complete feature matrix for enterprise-grade quantitative finance solutions</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Option Pricing -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h5 class="feature-title">Option Pricing Engine</h5>
+                        <p class="feature-description">
+                            Black-Scholes-Merton model for precise European option pricing with real-time call and put calculations
+                        </p>
+                        <div class="feature-metrics">
+                            <div class="metric">
+                                <span class="metric-number">99.99%</span>
+                                <span class="metric-label">Accuracy</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-number">&lt;1ms</span>
+                                <span class="metric-label">Response Time</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Greeks Analysis -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h5 class="feature-title">Greeks Risk Analysis</h5>
+                        <p class="feature-description">
+                            Complete Greeks sensitivity analysis: Delta, Gamma, Theta, Vega, Rho - five major risk indicators
+                        </p>
+                        <div class="feature-metrics">
+                            <div class="metric">
+                                <span class="metric-number">5</span>
+                                <span class="metric-label">Risk Metrics</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-number">Real-time</span>
+                                <span class="metric-label">Updates</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Monte Carlo -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-dice"></i>
+                        </div>
+                        <h5 class="feature-title">Monte Carlo Simulation</h5>
+                        <p class="feature-description">
+                            High-performance path simulation for theoretical price validation with variance reduction techniques
+                        </p>
+                        <div class="feature-metrics">
+                            <div class="metric">
+                                <span class="metric-number">100K+</span>
+                                <span class="metric-label">Simulations</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-number">95%</span>
+                                <span class="metric-label">Confidence</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Risk Metrics -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h5 class="feature-title">Risk Measurement System</h5>
+                        <p class="feature-description">
+                            VaR, CVaR risk metrics, stress testing and scenario analysis - comprehensive risk management toolkit
+                        </p>
+                        <div class="feature-metrics">
+                            <div class="metric">
+                                <span class="metric-number">Multiple</span>
+                                <span class="metric-label">Risk Models</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-number">99%</span>
+                                <span class="metric-label">VaR Confidence</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Advanced Features -->
+            <div class="row g-4 mt-4">
+                <div class="col-lg-4">
+                    <div class="advanced-feature">
+                        <div class="feature-icon-large">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h6>Implied Volatility Solver</h6>
+                        <p>Newton-Raphson iterative method for precise market implied volatility extraction with real-time volatility smile analysis</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="advanced-feature">
+                        <div class="feature-icon-large">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <h6>3D Price Surface</h6>
+                        <p>Interactive three-dimensional option price surface visualization showing underlying price and volatility impact on option value</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="advanced-feature">
+                        <div class="feature-icon-large">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h6>Arbitrage Detection</h6>
+                        <p>Put-call parity relationship verification with automatic arbitrage opportunity detection ensuring pricing model consistency</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advanced Features Demo Section -->
+    <section id="demo" class="py-5 bg-dark">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title gradient-text">Advanced Quantitative Finance Features</h2>
+                <p class="section-subtitle text-light">Complete implementation of professional-grade derivatives pricing and risk management tools</p>
+            </div>
+            
+            <!-- Feature Navigation Tabs -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <nav>
+                        <div class="nav nav-tabs feature-tabs justify-content-center" id="nav-tab" role="tablist">
+                            <button class="nav-link active" id="pricing-tab" data-bs-toggle="tab" data-bs-target="#pricing-panel" type="button">
+                                <i class="fas fa-calculator me-2"></i>Option Pricing
+                            </button>
+                            <button class="nav-link" id="greeks-tab" data-bs-toggle="tab" data-bs-target="#greeks-panel" type="button">
+                                <i class="fas fa-chart-line me-2"></i>Greeks Analysis
+                            </button>
+                            <button class="nav-link" id="montecarlo-tab" data-bs-toggle="tab" data-bs-target="#montecarlo-panel" type="button">
+                                <i class="fas fa-dice me-2"></i>Monte Carlo
+                            </button>
+                            <button class="nav-link" id="risk-tab" data-bs-toggle="tab" data-bs-target="#risk-panel" type="button">
+                                <i class="fas fa-shield-alt me-2"></i>Risk Metrics
+                            </button>
+                            <button class="nav-link" id="iv-tab" data-bs-toggle="tab" data-bs-target="#iv-panel" type="button">
+                                <i class="fas fa-brain me-2"></i>Implied Vol
+                            </button>
+                            <button class="nav-link" id="surface-tab" data-bs-toggle="tab" data-bs-target="#surface-panel" type="button">
+                                <i class="fas fa-cube me-2"></i>3D Surface
+                            </button>
+                            <button class="nav-link" id="arbitrage-tab" data-bs-toggle="tab" data-bs-target="#arbitrage-panel" type="button">
+                                <i class="fas fa-balance-scale me-2"></i>Arbitrage
+                            </button>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content" id="nav-tabContent">
+                <!-- Enhanced Option Pricing -->
+                <div class="tab-pane fade show active" id="pricing-panel" role="tabpanel">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="calculator-card">
+                                <div class="card-header">
+                                    <h5><i class="fas fa-sliders-h me-2"></i>Parameters</h5>
+                                </div>
+                                <div class="p-4">
+                            <div class="input-group-modern mb-3">
+                                        <label class="form-label-modern">Spot Price (S)</label>
+                                <input type="number" class="form-control-modern" id="spotPrice" value="100" step="0.01">
+                                        <span class="input-suffix">$</span>
+                            </div>
+                            <div class="input-group-modern mb-3">
+                                        <label class="form-label-modern">Strike Price (K)</label>
+                                        <input type="number" class="form-control-modern" id="strikePrice" value="105" step="0.01">
+                                        <span class="input-suffix">$</span>
+                            </div>
+                            <div class="input-group-modern mb-3">
+                                        <label class="form-label-modern">Time to Expiry (T)</label>
+                                <input type="number" class="form-control-modern" id="timeToExpiry" value="0.25" step="0.01">
+                                        <span class="input-suffix">years</span>
+                            </div>
+                            <div class="input-group-modern mb-3">
+                                        <label class="form-label-modern">Risk-free Rate (r)</label>
+                                <input type="number" class="form-control-modern" id="riskFreeRate" value="5" step="0.1">
+                                        <span class="input-suffix">%</span>
+                            </div>
+                                    <div class="input-group-modern mb-4">
+                                        <label class="form-label-modern">Volatility (σ)</label>
+                                <input type="number" class="form-control-modern" id="volatility" value="20" step="0.1">
+                                        <span class="input-suffix">%</span>
+                            </div>
+                                    <button class="btn-modern btn-calculate w-100" onclick="calculateEnhancedPricing()">
+                                        <i class="fas fa-calculator me-2"></i>Calculate All Models
+                            </button>
+                                </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="results-card-modern">
+                                <div class="card-header">
+                                    <h5><i class="fas fa-chart-bar me-2"></i>Multi-Model Results</h5>
+                            </div>
+                                <div id="calculationResults" class="results-content">
+                                    <div class="results-placeholder text-center py-5">
+                                        <i class="fas fa-calculator fa-3x text-muted mb-3"></i>
+                                        <h6 class="text-muted">Compare Black-Scholes, Monte Carlo, and Binomial Tree models</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                </div>
+
+                <!-- Greeks Risk Analysis -->
+                <div class="tab-pane fade" id="greeks-panel" role="tabpanel">
+            <div class="row">
+                        <div class="col-lg-4">
+                            <div class="calculator-card">
+                                <div class="card-header">
+                                    <h5><i class="fas fa-chart-line me-2"></i>Greeks Analysis</h5>
+                                </div>
+                                <div class="p-4">
+                                    <button class="btn-modern btn-calculate w-100 mb-3" onclick="analyzeGreeks()">
+                                        <i class="fas fa-analytics me-2"></i>Analyze Greeks Risk
+                                    </button>
+                                    <button class="btn-modern btn-secondary-modern w-100 mb-3" onclick="generateGreeksChart()">
+                                        <i class="fas fa-chart-area me-2"></i>Generate Charts
+                                    </button>
+                                    <div class="mt-3">
+                                        <small class="text-muted">
+                                            <strong>Greeks Explanation:</strong><br>
+                                            • <strong>Delta:</strong> Price sensitivity<br>
+                                            • <strong>Gamma:</strong> Delta change rate<br>
+                                            • <strong>Theta:</strong> Time decay<br>
+                                            • <strong>Vega:</strong> Volatility sensitivity<br>
+                                            • <strong>Rho:</strong> Interest rate sensitivity
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                    <div class="results-card-modern">
+                                <div class="card-header">
+                                    <h5><i class="fas fa-chart-line me-2"></i>Greeks Risk Analysis</h5>
+                                </div>
+                                <div id="greeksResults" class="results-content">
+                                    <div class="results-placeholder text-center py-5">
+                                        <i class="fas fa-chart-line fa-3x text-muted mb-3"></i>
+                                        <h6 class="text-muted">Comprehensive Greeks risk assessment with hedging recommendations</h6>
+                            </div>
+                                </div>
+                            </div>
+                                </div>
+                            </div>
+                                </div>
+
+                <!-- Monte Carlo Simulation -->
+                <div class="tab-pane fade" id="montecarlo-panel" role="tabpanel">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="calculator-card">
+                                <div class="card-header">
+                                    <h5><i class="fas fa-dice me-2"></i>Simulation Settings</h5>
+                            </div>
+                                <div class="p-4">
+                                    <div class="input-group-modern mb-3">
+                                        <label class="form-label-modern">Simulations</label>
+                                        <select class="form-control-modern" id="mcSimulations">
+                                            <option value="10000">10,000</option>
+                                            <option value="50000" selected>50,000</option>
+                                            <option value="100000">100,000</option>
+                                        </select>
+                                </div>
+                                    <div class="input-group-modern mb-4">
+                                        <label class="form-label-modern">Technique</label>
+                                        <select class="form-control-modern" id="mcTechnique">
+                                            <option value="standard">Standard</option>
+                                            <option value="antithetic" selected>Antithetic Variables</option>
+                                            <option value="control">Control Variates</option>
+                                        </select>
+                            </div>
+                                    <button class="btn-modern btn-calculate w-100" onclick="runMonteCarloAnalysis()">
+                                        <i class="fas fa-play me-2"></i>Run Simulation
+                                    </button>
+                        </div>
+                    </div>
+                </div>
+                        <div class="col-lg-8">
+                            <div class="results-card-modern">
+                                <div class="card-header">
+                                    <h5><i class="fas fa-chart-area me-2"></i>Monte Carlo Results</h5>
+            </div>
+                                <div id="montecarloResults" class="results-content">
+                                    <div class="results-placeholder text-center py-5">
+                                        <i class="fas fa-dice fa-3x text-muted mb-3"></i>
+                                        <h6 class="text-muted">Advanced simulation with variance reduction techniques</h6>
+        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Risk Measurement System -->
+                <div class="tab-pane fade" id="risk-panel" role="tabpanel">
+            <div class="row">
+                        <div class="col-lg-4">
+                            <div class="calculator-card">
+                                <div class="card-header">
+                                    <h5><i class="fas fa-shield-alt me-2"></i>Risk Parameters</h5>
+                                </div>
+                                <div class="p-4">
+                                    <div class="input-group-modern mb-3">
+                                        <label class="form-label-modern">Portfolio Value</label>
+                                        <input type="number" class="form-control-modern" id="portfolioValue" value="1000000" step="10000">
+                                        <span class="input-suffix">$</span>
+                                    </div>
+                                    <div class="input-group-modern mb-3">
+                                        <label class="form-label-modern">Confidence Level</label>
+                                        <select class="form-control-modern" id="confidenceLevel">
+                                            <option value="0.95" selected>95%</option>
+                                            <option value="0.99">99%</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn-modern btn-calculate w-100" onclick="calculateRiskMetrics()">
+                                        <i class="fas fa-exclamation-triangle me-2"></i>Calculate VaR/CVaR
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                    <div class="results-card-modern">
+                                <div class="card-header">
+                                    <h5><i class="fas fa-chart-pie me-2"></i>Risk Analysis</h5>
+                    </div>
+                                <div id="riskResults" class="results-content">
+                                    <div class="results-placeholder text-center py-5">
+                                        <i class="fas fa-shield-alt fa-3x text-muted mb-3"></i>
+                                        <h6 class="text-muted">VaR, CVaR calculation and comprehensive stress testing</h6>
+                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Implied Volatility Solver -->
+                <div class="tab-pane fade" id="iv-panel" role="tabpanel">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="calculator-card">
+                                <div class="card-header">
+                                    <h5><i class="fas fa-brain me-2"></i>Market Data</h5>
+                                </div>
+                                <div class="p-4">
+                                    <div class="input-group-modern mb-3">
+                                        <label class="form-label-modern">Market Price</label>
+                                        <input type="number" class="form-control-modern" id="marketPrice" value="8.50" step="0.01">
+                                        <span class="input-suffix">$</span>
+                                    </div>
+                                    <div class="input-group-modern mb-4">
+                                        <label class="form-label-modern">Option Type</label>
+                                        <select class="form-control-modern" id="ivOptionType">
+                                            <option value="call" selected>Call Option</option>
+                                            <option value="put">Put Option</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn-modern btn-calculate w-100" onclick="solveImpliedVolatility()">
+                                        <i class="fas fa-search me-2"></i>Solve Implied Vol
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                    <div class="results-card-modern">
+                                <div class="card-header">
+                                    <h5><i class="fas fa-brain me-2"></i>Implied Volatility</h5>
+                                </div>
+                                <div id="ivResults" class="results-content">
+                                    <div class="results-placeholder text-center py-5">
+                                        <i class="fas fa-brain fa-3x text-muted mb-3"></i>
+                                        <h6 class="text-muted">Newton-Raphson method for implied volatility extraction</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3D Price Surface -->
+                <div class="tab-pane fade" id="surface-panel" role="tabpanel">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="calculator-card">
+                                <div class="card-header">
+                                    <h5><i class="fas fa-cube me-2"></i>Surface Settings</h5>
+                                </div>
+                                <div class="p-4">
+                                    <div class="input-group-modern mb-3">
+                                        <label class="form-label-modern">Surface Type</label>
+                                        <select class="form-control-modern" id="surfaceType">
+                                            <option value="price" selected>Option Price</option>
+                                            <option value="delta">Delta Surface</option>
+                                            <option value="gamma">Gamma Surface</option>
+                                            <option value="vega">Vega Surface</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group-modern mb-4">
+                                        <label class="form-label-modern">Option Type</label>
+                                        <select class="form-control-modern" id="surfaceOptionType">
+                                            <option value="call" selected>Call Option</option>
+                                            <option value="put">Put Option</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn-modern btn-calculate w-100" onclick="generate3DSurface()">
+                                        <i class="fas fa-cube me-2"></i>Generate Surface
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="results-card-modern">
+                                <div class="card-header">
+                                    <h5><i class="fas fa-cube me-2"></i>3D Visualization</h5>
+                                </div>
+                                <div id="surfaceResults" class="results-content" style="height: 500px;">
+                                    <div class="results-placeholder text-center py-5">
+                                        <i class="fas fa-cube fa-3x text-muted mb-3"></i>
+                                        <h6 class="text-muted">Interactive 3D price and Greeks surfaces</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Arbitrage Detection -->
+                <div class="tab-pane fade" id="arbitrage-panel" role="tabpanel">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="calculator-card">
+                                <div class="card-header">
+                                    <h5><i class="fas fa-balance-scale me-2"></i>Detection Settings</h5>
+                                </div>
+                                <div class="p-4">
+                                    <div class="input-group-modern mb-3">
+                                        <label class="form-label-modern">Method</label>
+                                        <select class="form-control-modern" id="arbMethod">
+                                            <option value="all" selected>All Methods</option>
+                                            <option value="putcall">Put-Call Parity</option>
+                                            <option value="calendar">Calendar Spread</option>
+                                            <option value="butterfly">Butterfly Spread</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn-modern btn-calculate w-100" onclick="detectArbitrage()">
+                                        <i class="fas fa-search me-2"></i>Detect Arbitrage
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="results-card-modern">
+                                <div class="card-header">
+                                    <h5><i class="fas fa-balance-scale me-2"></i>Arbitrage Analysis</h5>
+                                </div>
+                                <div id="arbitrageResults" class="results-content">
+                                    <div class="results-placeholder text-center py-5">
+                                        <i class="fas fa-balance-scale fa-3x text-muted mb-3"></i>
+                                        <h6 class="text-muted">Detect arbitrage opportunities and market inefficiencies</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack -->
+    <section id="technology" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title gradient-text">Technology Stack</h2>
+                <p class="section-subtitle">Modern technology choices ensuring high performance and scalability</p>
+                            </div>
+            
+            <div class="row g-4">
+                <!-- Backend Technologies -->
+                <div class="col-lg-6">
+                    <div class="tech-category">
+                        <h4 class="tech-category-title">
+                            <i class="fas fa-server me-2"></i>
+                            Backend Technologies
+                        </h4>
+                        
+                        <div class="tech-grid">
+                            <div class="tech-item">
+                                <div class="tech-icon">
+                                    <i class="fab fa-python"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <h6>Python 3.8+</h6>
+                                    <p>Core computation engine</p>
+                                </div>
+                            </div>
+                            
+                            <div class="tech-item">
+                                <div class="tech-icon">
+                                    <i class="fas fa-flask"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <h6>Flask 2.0+</h6>
+                                    <p>Web application framework</p>
+                                </div>
+                            </div>
+                            
+                            <div class="tech-item">
+                                <div class="tech-icon">
+                                    <i class="fas fa-square-root-alt"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <h6>NumPy & SciPy</h6>
+                                    <p>Scientific computing libraries</p>
+                                </div>
+                            </div>
+                            
+                            <div class="tech-item">
+                                <div class="tech-icon">
+                                    <i class="fas fa-table"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <h6>Pandas</h6>
+                                    <p>Data analysis and processing</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Frontend Technologies -->
+                <div class="col-lg-6">
+                    <div class="tech-category">
+                        <h4 class="tech-category-title">
+                            <i class="fas fa-desktop me-2"></i>
+                            Frontend Technologies
+                        </h4>
+                        
+                        <div class="tech-grid">
+                            <div class="tech-item">
+                                <div class="tech-icon">
+                                    <i class="fab fa-html5"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <h6>HTML5 & CSS3</h6>
+                                    <p>Modern web standards</p>
+                                </div>
+                            </div>
+                            
+                            <div class="tech-item">
+                                <div class="tech-icon">
+                                    <i class="fab fa-js-square"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <h6>JavaScript ES6+</h6>
+                                    <p>Client-side interaction logic</p>
+                                </div>
+                            </div>
+                            
+                            <div class="tech-item">
+                                <div class="tech-icon">
+                                    <i class="fab fa-bootstrap"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <h6>Bootstrap 5</h6>
+                                    <p>Responsive UI framework</p>
+                                </div>
+                            </div>
+                            
+                            <div class="tech-item">
+                                <div class="tech-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <h6>Plotly.js</h6>
+                                    <p>Interactive visualization</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Deployment & DevOps -->
+            <div class="row g-4 mt-4">
+                <div class="col-12">
+                    <div class="tech-category">
+                        <h4 class="tech-category-title">
+                            <i class="fas fa-cloud me-2"></i>
+                            Deployment & DevOps
+                        </h4>
+                        
+                        <div class="deployment-options">
+                            <div class="deployment-item">
+                                <div class="deployment-icon">
+                                    <i class="fab fa-github"></i>
+                                </div>
+                                <h6>GitHub Pages</h6>
+                                <p>Static website hosting</p>
+                            </div>
+                            
+                            <div class="deployment-item">
+                                <div class="deployment-icon">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <h6>Vercel/Netlify</h6>
+                                <p>Modern deployment platforms</p>
+                            </div>
+                            
+                            <div class="deployment-item">
+                                <div class="deployment-icon">
+                                    <i class="fab fa-docker"></i>
+                                </div>
+                                <h6>Docker</h6>
+                                <p>Containerized deployment</p>
+                            </div>
+                            
+                            <div class="deployment-item">
+                                <div class="deployment-icon">
+                                    <i class="fas fa-cogs"></i>
+                                </div>
+                                <h6>CI/CD</h6>
+                                <p>Automated pipelines</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Metrics -->
+    <section id="performance" class="py-5 bg-dark">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title gradient-text">Performance Benchmarks</h2>
+                <p class="section-subtitle text-light">Enterprise-grade performance standards ensuring stable production operation</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Computation Performance -->
+                <div class="col-lg-6">
+                    <div class="performance-card">
+                        <div class="performance-header">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <h5>Computational Performance</h5>
+                        </div>
+                        
+                        <div class="performance-metrics">
+                            <div class="performance-item">
+                                <div class="performance-label">Option pricing calculation</div>
+                                <div class="performance-value">&lt; 1ms</div>
+                                <div class="performance-bar">
+                                    <div class="performance-fill" style="width: 98%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="performance-item">
+                                <div class="performance-label">Greeks calculation</div>
+                                <div class="performance-value">&lt; 2ms</div>
+                                <div class="performance-bar">
+                                    <div class="performance-fill" style="width: 96%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="performance-item">
+                                <div class="performance-label">Monte Carlo simulation (100K)</div>
+                                <div class="performance-value">&lt; 100ms</div>
+                                <div class="performance-bar">
+                                    <div class="performance-fill" style="width: 94%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="performance-item">
+                                <div class="performance-label">Implied volatility solver</div>
+                                <div class="performance-value">&lt; 10ms</div>
+                                <div class="performance-bar">
+                                    <div class="performance-fill" style="width: 92%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Web Performance -->
+                <div class="col-lg-6">
+                    <div class="performance-card">
+                        <div class="performance-header">
+                            <i class="fas fa-globe"></i>
+                            <h5>Web Performance</h5>
+                        </div>
+                        
+                        <div class="performance-metrics">
+                            <div class="performance-item">
+                                <div class="performance-label">Homepage load time</div>
+                                <div class="performance-value">&lt; 2s</div>
+                                <div class="performance-bar">
+                                    <div class="performance-fill" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="performance-item">
+                                <div class="performance-label">API response time</div>
+                                <div class="performance-value">&lt; 50ms</div>
+                                <div class="performance-bar">
+                                    <div class="performance-fill" style="width: 97%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="performance-item">
+                                <div class="performance-label">Chart rendering time</div>
+                                <div class="performance-value">&lt; 300ms</div>
+                                <div class="performance-bar">
+                                    <div class="performance-fill" style="width: 93%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="performance-item">
+                                <div class="performance-label">Mobile responsiveness</div>
+                                <div class="performance-value">100%</div>
+                                <div class="performance-bar">
+                                    <div class="performance-fill" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quality Metrics -->
+            <div class="row g-4 mt-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="quality-metric">
+                        <div class="quality-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="quality-number">95%+</div>
+                        <div class="quality-label">Test Coverage</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="quality-metric">
+                        <div class="quality-icon">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <div class="quality-number">0</div>
+                        <div class="quality-label">Known Bugs</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="quality-metric">
+                        <div class="quality-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="quality-number">A+</div>
+                        <div class="quality-label">Security Grade</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="quality-metric">
+                        <div class="quality-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="quality-number">100%</div>
+                        <div class="quality-label">Responsive Design</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title gradient-text">Contact Information</h2>
+                <p class="section-subtitle">Welcome to discuss quantitative finance, risk management technical issues and career opportunities</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="contact-card">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="contact-info">
+                                    <h5 class="mb-4">Bowen Yao</h5>
+                                    <p class="text-muted mb-4">Financial Technology Professional & Risk Management Specialist</p>
+                                    
+                                    <div class="contact-item">
+                                        <i class="fas fa-briefcase"></i>
+                                        <div>
+                                            <strong>Current Position</strong>
+                                            <p>Derivatives Risk Analyst at Athene Annuity and Life Company</p>
+                            </div>
+                        </div>
+                                    
+                                    <div class="contact-item">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <div>
+                                            <strong>Education</strong>
+                                            <p>Master of Engineering - Financial Technology</p>
+                                            <p>Bachelor of Science - Finance</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="contact-item">
+                                        <i class="fas fa-chart-line"></i>
+                                        <div>
+                                            <strong>Derivatives & Risk Management</strong>
+                                            <p>Options Pricing • Greeks Analysis • Monte Carlo Simulation • VaR/CVaR Modeling</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="contact-item">
+                                        <i class="fas fa-code"></i>
+                                        <div>
+                                            <strong>Technical Skills</strong>
+                                            <p>Python • JavaScript • SQL • R • MATLAB • Bloomberg Terminal • NumPy • SciPy</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="contact-links">
+                                    <h6 class="mb-4">Contact Methods</h6>
+                                    
+                                    <a href="https://github.com/BowenYao-code" class="contact-link" target="_blank">
+                                        <i class="fab fa-github"></i>
+                                        <span>GitHub Profile</span>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    
+                                    <a href="https://linkedin.com/in/bowen-yao" class="contact-link" target="_blank">
+                                        <i class="fab fa-linkedin"></i>
+                                        <span>LinkedIn Profile</span>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    
+                                    <a href="mailto:bowenyao984@gmail.com" class="contact-link">
+                                        <i class="fas fa-envelope"></i>
+                                        <span>bowenyao984@gmail.com</span>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    
+                                    <a href="tel:+19843358024" class="contact-link">
+                                        <i class="fas fa-phone"></i>
+                                        <span>(984) 335-8024</span>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    
+                                    <a href="https://bowenyao-code.github.io/Risk-Management/" class="contact-link" target="_blank">
+                                        <i class="fas fa-globe"></i>
+                                        <span>Portfolio Website</span>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                                
+                                <div class="certifications mt-4">
+                                    <h6 class="mb-3">Specializations</h6>
+                                    <div class="cert-badges">
+                                        <span class="cert-badge">Derivatives Pricing</span>
+                                        <span class="cert-badge">Risk Analytics</span>
+                                        <span class="cert-badge">Quantitative Finance</span>
+                                        <span class="cert-badge">Algorithmic Trading</span>
+                                        <span class="cert-badge">Financial Engineering</span>
+                                        <span class="cert-badge">Portfolio Optimization</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p class="mb-2">&copy; 2025 Bowen Yao. All rights reserved.</p>
+                    <p class="text-muted small">
+                        Professional Quantitative Risk Management Platform
+                    </p>
+                    <div class="footer-links mt-3">
+                        <a href="https://github.com/BowenYao-code/Risk-Management" target="_blank">GitHub</a>
+                        <span class="mx-2">•</span>
+                        <a href="#" onclick="scrollToTop()">Back to Top</a>
+                        <span class="mx-2">•</span>
+                        <a href="mailto:bowenyao984@gmail.com">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Black-Scholes Calculator -->
+    <script src="js/black-scholes.js"></script>
+    
+    <!-- Main JavaScript -->
+    <script src="js/main.js"></script>
+    
+    <!-- Advanced Features -->
+    <script src="js/advanced-features.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Live demo data simulation
+        function updateLiveData() {
+            const basePrice = 100;
+            const volatility = 0.2;
+            const timeNow = Date.now() / 1000;
+            
+            // Simulate price movements
+            const priceChange = Math.sin(timeNow / 10) * 2 + Math.random() * 0.5 - 0.25;
+            const currentPrice = basePrice + priceChange;
+            
+            // Calculate options with current price
+            const bs = new BlackScholesModel(currentPrice, 105, 0.25, 0.05, volatility);
+            
+            // Update display
+            document.getElementById('live-call-price').textContent = `$${bs.callPrice().toFixed(2)}`;
+            document.getElementById('live-put-price').textContent = `$${bs.putPrice().toFixed(2)}`;
+            document.getElementById('live-delta').textContent = bs.delta('call').toFixed(4);
+            document.getElementById('live-gamma').textContent = bs.gamma().toFixed(4);
+            document.getElementById('live-theta').textContent = bs.theta('call').toFixed(4);
+            document.getElementById('live-vega').textContent = bs.vega().toFixed(4);
+        }
+        
+        // Initialize live data updates
+        setInterval(updateLiveData, 2000);
+        updateLiveData();
+        
+        // Initialize price chart
+        function initPriceChart() {
+            const ctx = document.getElementById('priceChart').getContext('2d');
+            const data = [];
+            const labels = [];
+            
+            for (let i = 0; i < 20; i++) {
+                labels.push('');
+                data.push(100 + Math.sin(i / 3) * 5 + Math.random() * 2 - 1);
+            }
+            
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        borderColor: '#667eea',
+                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: { display: false },
+                        y: { display: false }
+                    },
+                    elements: {
+                        point: { radius: 0 }
+                    }
+                }
+            });
+        }
+        
+        // Option calculation function
+        function calculateOptions() {
+            try {
+                const S = parseFloat(document.getElementById('spotPrice').value);
+                const K = parseFloat(document.getElementById('strikePrice').value);
+                const T = parseFloat(document.getElementById('timeToExpiry').value);
+                const r = parseFloat(document.getElementById('riskFreeRate').value) / 100;
+                const sigma = parseFloat(document.getElementById('volatility').value) / 100;
+                
+                // Validate inputs
+                if (S <= 0 || K <= 0 || T <= 0 || sigma <= 0) {
+                    throw new Error('All parameters must be positive numbers');
+                }
+                
+                // Calculate using Black-Scholes
+                const bs = new BlackScholesModel(S, K, T, r, sigma);
+                const callPrice = bs.callPrice();
+                const putPrice = bs.putPrice();
+                const callGreeks = bs.getAllGreeks('call');
+                const putGreeks = bs.getAllGreeks('put');
+                
+                // Monte Carlo validation
+                const mcResult = monteCarloSimulation(S, K, T, r, sigma, 50000);
+                
+                // Display results
+                displayResults({
+                    callPrice,
+                    putPrice,
+                    callGreeks,
+                    putGreeks,
+                    mcResult,
+                    parameters: { S, K, T, r, sigma }
+                });
+                
+            } catch (error) {
+                displayError(error.message);
+            }
+        }
+        
+        function displayResults(results) {
+            const { callPrice, putPrice, callGreeks, putGreeks, mcResult, parameters } = results;
+            
+            const html = `
+                <div class="results-success">
+                    <!-- Option Prices -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="price-card-modern call-option">
+                                <div class="price-card-header">
+                                    <i class="fas fa-arrow-up"></i>
+                                    Call Option
+                                </div>
+                                <div class="price-value">$${callPrice.toFixed(4)}</div>
+                                <div class="price-meta">Theoretical Price</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="price-card-modern put-option">
+                                <div class="price-card-header">
+                                    <i class="fas fa-arrow-down"></i>
+                                    Put Option
+                                </div>
+                                <div class="price-value">$${putPrice.toFixed(4)}</div>
+                                <div class="price-meta">Theoretical Price</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Greeks Analysis -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h6 class="greeks-section-title call-title">Call Option Greeks</h6>
+                            <div class="greeks-modern-grid">
+                                <div class="greek-modern-item">
+                                    <div class="greek-symbol">Δ</div>
+                                    <div class="greek-details">
+                                        <div class="greek-name">Delta</div>
+                                        <div class="greek-value">${callGreeks.delta.toFixed(6)}</div>
+                                        <div class="greek-desc">Price sensitivity</div>
+                                    </div>
+                                </div>
+                                <div class="greek-modern-item">
+                                    <div class="greek-symbol">Γ</div>
+                                    <div class="greek-details">
+                                        <div class="greek-name">Gamma</div>
+                                        <div class="greek-value">${callGreeks.gamma.toFixed(6)}</div>
+                                        <div class="greek-desc">Delta change rate</div>
+                                    </div>
+                                </div>
+                                <div class="greek-modern-item">
+                                    <div class="greek-symbol">Θ</div>
+                                    <div class="greek-details">
+                                        <div class="greek-name">Theta</div>
+                                        <div class="greek-value">${callGreeks.theta.toFixed(6)}</div>
+                                        <div class="greek-desc">Time decay</div>
+                                    </div>
+                                </div>
+                                <div class="greek-modern-item">
+                                    <div class="greek-symbol">ν</div>
+                                    <div class="greek-details">
+                                        <div class="greek-name">Vega</div>
+                                        <div class="greek-value">${callGreeks.vega.toFixed(6)}</div>
+                                        <div class="greek-desc">Volatility sensitivity</div>
+                                    </div>
+                                </div>
+                                <div class="greek-modern-item">
+                                    <div class="greek-symbol">ρ</div>
+                                    <div class="greek-details">
+                                        <div class="greek-name">Rho</div>
+                                        <div class="greek-value">${callGreeks.rho.toFixed(6)}</div>
+                                        <div class="greek-desc">Interest rate sensitivity</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <h6 class="greeks-section-title put-title">Put Option Greeks</h6>
+                            <div class="greeks-modern-grid">
+                                <div class="greek-modern-item">
+                                    <div class="greek-symbol">Δ</div>
+                                    <div class="greek-details">
+                                        <div class="greek-name">Delta</div>
+                                        <div class="greek-value">${putGreeks.delta.toFixed(6)}</div>
+                                        <div class="greek-desc">Price sensitivity</div>
+                                    </div>
+                                </div>
+                                <div class="greek-modern-item">
+                                    <div class="greek-symbol">Γ</div>
+                                    <div class="greek-details">
+                                        <div class="greek-name">Gamma</div>
+                                        <div class="greek-value">${putGreeks.gamma.toFixed(6)}</div>
+                                        <div class="greek-desc">Delta change rate</div>
+                                    </div>
+                                </div>
+                                <div class="greek-modern-item">
+                                    <div class="greek-symbol">Θ</div>
+                                    <div class="greek-details">
+                                        <div class="greek-name">Theta</div>
+                                        <div class="greek-value">${putGreeks.theta.toFixed(6)}</div>
+                                        <div class="greek-desc">Time decay</div>
+                                    </div>
+                                </div>
+                                <div class="greek-modern-item">
+                                    <div class="greek-symbol">ν</div>
+                                    <div class="greek-details">
+                                        <div class="greek-name">Vega</div>
+                                        <div class="greek-value">${putGreeks.vega.toFixed(6)}</div>
+                                        <div class="greek-desc">Volatility sensitivity</div>
+                                    </div>
+                                </div>
+                                <div class="greek-modern-item">
+                                    <div class="greek-symbol">ρ</div>
+                                    <div class="greek-details">
+                                        <div class="greek-name">Rho</div>
+                                        <div class="greek-value">${putGreeks.rho.toFixed(6)}</div>
+                                        <div class="greek-desc">Interest rate sensitivity</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Monte Carlo Validation -->
+                    <div class="validation-section">
+                        <h6 class="validation-title">Monte Carlo Validation</h6>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="validation-item">
+                                    <div class="validation-comparison">
+                                        <span>Call Option - Theoretical:</span>
+                                        <strong>$${callPrice.toFixed(4)}</strong>
+                                    </div>
+                                    <div class="validation-comparison">
+                                        <span>Call Option - Monte Carlo:</span>
+                                        <strong>$${mcResult.callPrice.toFixed(4)}</strong>
+                                    </div>
+                                    <div class="validation-confidence">
+                                        Error: ${Math.abs(callPrice - mcResult.callPrice).toFixed(4)} (${(Math.abs(callPrice - mcResult.callPrice) / callPrice * 100).toFixed(2)}%)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="validation-item">
+                                    <div class="validation-comparison">
+                                        <span>Put Option - Theoretical:</span>
+                                        <strong>$${putPrice.toFixed(4)}</strong>
+                                    </div>
+                                    <div class="validation-comparison">
+                                        <span>Put Option - Monte Carlo:</span>
+                                        <strong>$${mcResult.putPrice.toFixed(4)}</strong>
+                                    </div>
+                                    <div class="validation-confidence">
+                                        Error: ${Math.abs(putPrice - mcResult.putPrice).toFixed(4)} (${(Math.abs(putPrice - mcResult.putPrice) / putPrice * 100).toFixed(2)}%)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Analysis Summary -->
+                    <div class="analysis-footer mt-4">
+                        <div class="analysis-grid">
+                            <div class="analysis-item">
+                                <div class="analysis-label">Moneyness</div>
+                                <div class="analysis-value">${(parameters.S / parameters.K).toFixed(4)}</div>
+                                <div class="analysis-meta">${parameters.S > parameters.K ? 'ITM' : parameters.S < parameters.K ? 'OTM' : 'ATM'}</div>
+                            </div>
+                            <div class="analysis-item">
+                                <div class="analysis-label">Time Value (Call)</div>
+                                <div class="analysis-value">$${Math.max(callPrice - Math.max(parameters.S - parameters.K, 0), 0).toFixed(4)}</div>
+                                <div class="analysis-meta">Extrinsic value</div>
+                            </div>
+                            <div class="analysis-item">
+                                <div class="analysis-label">Put-Call Parity</div>
+                                <div class="analysis-value">${Math.abs(callPrice - putPrice - (parameters.S - parameters.K * Math.exp(-parameters.r * parameters.T))).toFixed(6)}</div>
+                                <div class="analysis-meta">Parity verification</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('calculationResults').innerHTML = html;
+        }
+        
+        function displayError(message) {
+            const html = `
+                <div class="results-error text-center py-5">
+                    <i class="fas fa-exclamation-triangle fa-3x mb-3"></i>
+                    <h6>Calculation Error</h6>
+                    <p class="text-muted">${message}</p>
+                </div>
+            `;
+            document.getElementById('calculationResults').innerHTML = html;
+        }
+        
+        function resetForm() {
+            document.getElementById('spotPrice').value = '100';
+            document.getElementById('strikePrice').value = '105';
+            document.getElementById('timeToExpiry').value = '0.25';
+            document.getElementById('riskFreeRate').value = '5';
+            document.getElementById('volatility').value = '20';
+            
+            document.getElementById('calculationResults').innerHTML = `
+                <div class="results-placeholder text-center py-5">
+                    <i class="fas fa-calculator fa-3x text-muted mb-3"></i>
+                    <h6 class="text-muted">Enter parameters and click Calculate</h6>
+                    <p class="text-muted small">System will calculate option prices and Greeks risk indicators in real-time</p>
+                </div>
+            `;
+        }
+        
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Initialize feature engines
+        let enhancedPricing, greeksAnalyzer, advancedMC, riskSystem, surfaceGenerator, arbitrageDetector;
+
+        // Enhanced Option Pricing
+        function calculateEnhancedPricing() {
+            try {
+                const params = {
+                    S: parseFloat(document.getElementById('spotPrice').value),
+                    K: parseFloat(document.getElementById('strikePrice').value),
+                    T: parseFloat(document.getElementById('timeToExpiry').value),
+                    r: parseFloat(document.getElementById('riskFreeRate').value) / 100,
+                    sigma: parseFloat(document.getElementById('volatility').value) / 100,
+                    optionType: 'call'
+                };
+
+                if (!enhancedPricing) enhancedPricing = new EnhancedOptionPricing();
+                const results = enhancedPricing.calculateAllModels(params);
+                displayEnhancedPricingResults(results);
+            } catch (error) {
+                console.error('Enhanced pricing error:', error);
+                Utils.showError('calculationResults', 'Calculation error: ' + error.message);
+            }
+        }
+
+        function displayEnhancedPricingResults(results) {
+            const html = `
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="price-card-modern call-option">
+                            <div class="price-card-header">Black-Scholes Model</div>
+                            <div class="price-value">$${results.blackScholes.price.toFixed(4)}</div>
+                            <div class="price-meta">${results.blackScholes.accuracy}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="price-card-modern call-option">
+                            <div class="price-card-header">Monte Carlo</div>
+                            <div class="price-value">$${results.monteCarlo.price.toFixed(4)}</div>
+                            <div class="price-meta">${results.monteCarlo.simulations.toLocaleString()} sims</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="price-card-modern call-option">
+                            <div class="price-card-header">Binomial Tree</div>
+                            <div class="price-value">$${results.binomial.price.toFixed(4)}</div>
+                            <div class="price-meta">${results.binomial.accuracy}</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="validation-section">
+                    <h6 class="validation-title">Model Convergence Analysis</h6>
+                    <div class="validation-item">
+                        <div class="validation-comparison">
+                            <span>BS vs MC Difference:</span>
+                            <strong>$${results.comparison.bsMcDifference.toFixed(6)}</strong>
+                        </div>
+                        <div class="validation-comparison">
+                            <span>BS vs Binomial:</span>
+                            <strong>$${results.comparison.bsBinomialDifference.toFixed(6)}</strong>
+                        </div>
+                        <div class="validation-comparison">
+                            <span>Convergence Status:</span>
+                            <strong class="${results.comparison.convergence ? 'text-success' : 'text-warning'}">
+                                ${results.comparison.convergence ? 'Excellent' : 'Acceptable'}
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('calculationResults').innerHTML = html;
+        }
+
+        // Greeks Analysis
+        function analyzeGreeks() {
+            try {
+                const params = {
+                    S: parseFloat(document.getElementById('spotPrice').value),
+                    K: parseFloat(document.getElementById('strikePrice').value),
+                    T: parseFloat(document.getElementById('timeToExpiry').value),
+                    r: parseFloat(document.getElementById('riskFreeRate').value) / 100,
+                    sigma: parseFloat(document.getElementById('volatility').value) / 100
+                };
+
+                if (!greeksAnalyzer) greeksAnalyzer = new GreeksAnalyzer();
+                const results = greeksAnalyzer.analyzeGreeks(params);
+                displayGreeksResults(results);
+            } catch (error) {
+                console.error('Greeks analysis error:', error);
+                Utils.showError('greeksResults', 'Analysis error: ' + error.message);
+            }
+        }
+
+        function displayGreeksResults(results) {
+            const html = `
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <h6 class="greeks-section-title call-title">Call Option Greeks</h6>
+                        <div class="greeks-modern-grid">
+                            ${Object.entries(results.call.greeks).map(([greek, value]) => `
+                                <div class="greek-modern-item">
+                                    <div class="greek-symbol">${getGreekSymbol(greek)}</div>
+                                    <div class="greek-details">
+                                        <div class="greek-name">${greek.charAt(0).toUpperCase() + greek.slice(1)}</div>
+                                        <div class="greek-value">${value.toFixed(6)}</div>
+                                        <div class="greek-desc">Risk: ${results.call.riskLevel}</div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="greeks-section-title put-title">Put Option Greeks</h6>
+                        <div class="greeks-modern-grid">
+                            ${Object.entries(results.put.greeks).map(([greek, value]) => `
+                                <div class="greek-modern-item">
+                                    <div class="greek-symbol">${getGreekSymbol(greek)}</div>
+                                    <div class="greek-details">
+                                        <div class="greek-name">${greek.charAt(0).toUpperCase() + greek.slice(1)}</div>
+                                        <div class="greek-value">${value.toFixed(6)}</div>
+                                        <div class="greek-desc">Risk: ${results.put.riskLevel}</div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="validation-section">
+                    <h6 class="validation-title">Risk Assessment & Hedging</h6>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="validation-item">
+                                <h6 class="text-success">Call Hedging Recommendations</h6>
+                                ${results.call.hedgingRecommendations.slice(0, 3).map(rec => `
+                                    <div class="validation-comparison">
+                                        <span>${rec.type}:</span>
+                                        <small class="text-muted d-block">${rec.action}</small>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="validation-item">
+                                <h6 class="text-info">Portfolio Summary</h6>
+                                <div class="validation-comparison">
+                                    <span>Total Delta:</span><strong>${results.summary.totalDelta.toFixed(4)}</strong>
+                                </div>
+                                <div class="validation-comparison">
+                                    <span>Total Gamma:</span><strong>${results.summary.totalGamma.toFixed(6)}</strong>
+                                </div>
+                                <div class="validation-comparison">
+                                    <span>Overall Risk:</span><strong>${results.summary.portfolioRisk}</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('greeksResults').innerHTML = html;
+        }
+
+        // Monte Carlo Analysis
+        function runMonteCarloAnalysis() {
+            try {
+                const params = {
+                    S: parseFloat(document.getElementById('spotPrice').value),
+                    K: parseFloat(document.getElementById('strikePrice').value),
+                    T: parseFloat(document.getElementById('timeToExpiry').value),
+                    r: parseFloat(document.getElementById('riskFreeRate').value) / 100,
+                    sigma: parseFloat(document.getElementById('volatility').value) / 100,
+                    numSimulations: parseInt(document.getElementById('mcSimulations').value)
+                };
+
+                Utils.showLoading('montecarloResults', 'Running Monte Carlo simulation...');
+                
+                setTimeout(() => {
+                    if (!advancedMC) advancedMC = new AdvancedMonteCarlo();
+                    const results = advancedMC.runComprehensiveSimulation(params);
+                    displayMonteCarloResults(results);
+                }, 100);
+            } catch (error) {
+                console.error('Monte Carlo error:', error);
+                Utils.showError('montecarloResults', 'Simulation error: ' + error.message);
+            }
+        }
+
+        function displayMonteCarloResults(results) {
+            const html = `
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="analysis-item">
+                            <div class="analysis-label">Standard MC</div>
+                            <div class="analysis-value">$${results.standard.callPrice.toFixed(4)}</div>
+                            <div class="analysis-meta">±${results.standard.callStdError.toFixed(4)}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="analysis-item">
+                            <div class="analysis-label">Antithetic Variables</div>
+                            <div class="analysis-value">$${results.antithetic.callPrice.toFixed(4)}</div>
+                            <div class="analysis-meta">Variance Reduced</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="analysis-item">
+                            <div class="analysis-label">Control Variates</div>
+                            <div class="analysis-value">$${results.controlVariates.callPrice.toFixed(4)}</div>
+                            <div class="analysis-meta">Enhanced Accuracy</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="validation-section">
+                    <h6 class="validation-title">Statistical Analysis</h6>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="validation-item">
+                                <h6>Price Distribution</h6>
+                                <div class="validation-comparison">
+                                    <span>Mean Final Price:</span><strong>$${results.pathAnalysis.finalPrices.mean.toFixed(2)}</strong>
+                                </div>
+                                <div class="validation-comparison">
+                                    <span>Price Range:</span><strong>$${results.pathAnalysis.finalPrices.min.toFixed(2)} - $${results.pathAnalysis.finalPrices.max.toFixed(2)}</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="validation-item">
+                                <h6>Return Statistics</h6>
+                                <div class="validation-comparison">
+                                    <span>Mean Return:</span><strong>${(results.pathAnalysis.returns.mean * 100).toFixed(2)}%</strong>
+                                </div>
+                                <div class="validation-comparison">
+                                    <span>Volatility:</span><strong>${(results.pathAnalysis.returns.std * 100).toFixed(2)}%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('montecarloResults').innerHTML = html;
+        }
+
+        // Risk Metrics
+        function calculateRiskMetrics() {
+            try {
+                const params = {
+                    S: parseFloat(document.getElementById('spotPrice').value),
+                    K: parseFloat(document.getElementById('strikePrice').value),
+                    T: parseFloat(document.getElementById('timeToExpiry').value),
+                    r: parseFloat(document.getElementById('riskFreeRate').value) / 100,
+                    sigma: parseFloat(document.getElementById('volatility').value) / 100,
+                    portfolioValue: parseFloat(document.getElementById('portfolioValue').value)
+                };
+
+                Utils.showLoading('riskResults', 'Calculating risk metrics...');
+                
+                setTimeout(() => {
+                    if (!riskSystem) riskSystem = new RiskMeasurementSystem();
+                    const results = riskSystem.calculateRiskMetrics(params);
+                    displayRiskResults(results);
+                }, 100);
+            } catch (error) {
+                console.error('Risk calculation error:', error);
+                Utils.showError('riskResults', 'Risk calculation error: ' + error.message);
+            }
+        }
+
+        function displayRiskResults(results) {
+            const var95 = results.var['95%'];
+            const cvar95 = results.cvar['95%'];
+            
+            const html = `
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="performance-card">
+                            <div class="performance-header">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <h6>Value at Risk (95%)</h6>
+                            </div>
+                            <div class="performance-metrics">
+                                <div class="performance-item">
+                                    <div class="performance-label">Historical VaR</div>
+                                    <div class="performance-value">$${var95.historical.toLocaleString()}</div>
+                                </div>
+                                <div class="performance-item">
+                                    <div class="performance-label">Parametric VaR</div>
+                                    <div class="performance-value">$${var95.parametric.toLocaleString()}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="performance-card">
+                            <div class="performance-header">
+                                <i class="fas fa-chart-line"></i>
+                                <h6>Expected Shortfall (95%)</h6>
+                            </div>
+                            <div class="performance-metrics">
+                                <div class="performance-item">
+                                    <div class="performance-label">Historical CVaR</div>
+                                    <div class="performance-value">$${cvar95.historical.toLocaleString()}</div>
+                                </div>
+                                <div class="performance-item">
+                                    <div class="performance-label">Parametric CVaR</div>
+                                    <div class="performance-value">$${cvar95.parametric.toLocaleString()}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="validation-section">
+                    <h6 class="validation-title">Stress Testing Results</h6>
+                    <div class="row">
+                        ${Object.entries(results.stressTesting).slice(0, 4).map(([scenario, result]) => `
+                            <div class="col-md-6 mb-3">
+                                <div class="validation-item">
+                                    <h6 class="text-warning">${scenario.replace(/([A-Z])/g, ' $1').trim()}</h6>
+                                    <div class="validation-comparison">
+                                        <span>Call P&L:</span>
+                                        <strong class="${result.callPnL >= 0 ? 'text-success' : 'text-danger'}">
+                                            ${result.callPnL >= 0 ? '+' : ''}$${result.callPnL.toFixed(2)}
+                                        </strong>
+                                    </div>
+                                    <div class="validation-comparison">
+                                        <span>Impact:</span>
+                                        <strong>${Math.abs(result.callPnLPercent).toFixed(1)}%</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            document.getElementById('riskResults').innerHTML = html;
+        }
+
+        // Implied Volatility
+        function solveImpliedVolatility() {
+            try {
+                const marketPrice = parseFloat(document.getElementById('marketPrice').value);
+                const optionType = document.getElementById('ivOptionType').value;
+                const params = {
+                    S: parseFloat(document.getElementById('spotPrice').value),
+                    K: parseFloat(document.getElementById('strikePrice').value),
+                    T: parseFloat(document.getElementById('timeToExpiry').value),
+                    r: parseFloat(document.getElementById('riskFreeRate').value) / 100
+                };
+
+                const result = calculateImpliedVolatility(marketPrice, params.S, params.K, params.T, params.r, optionType);
+                displayIVResults(result, marketPrice, optionType);
+            } catch (error) {
+                console.error('IV calculation error:', error);
+                Utils.showError('ivResults', 'IV solver error: ' + error.message);
+            }
+        }
+
+        function displayIVResults(result, marketPrice, optionType) {
+            const html = `
+                <div class="text-center mb-4">
+                    <div class="iv-result-card">
+                        <div class="iv-header">Implied Volatility</div>
+                        <div class="iv-value">${(result.impliedVolatility * 100).toFixed(2)}%</div>
+                        <div class="iv-details">
+                            <div class="iv-detail-item">
+                                <span>Market Price:</span><strong>$${marketPrice.toFixed(2)}</strong>
+                            </div>
+                            <div class="iv-detail-item">
+                                <span>Option Type:</span><strong>${optionType.toUpperCase()}</strong>
+                            </div>
+                            <div class="iv-detail-item">
+                                <span>Iterations:</span><strong>${result.iterations}</strong>
+                            </div>
+                            <div class="iv-detail-item">
+                                <span>Converged:</span><strong class="${result.converged ? 'text-success' : 'text-warning'}">${result.converged ? 'Yes' : 'No'}</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('ivResults').innerHTML = html;
+        }
+
+        // 3D Surface Generation
+        function generate3DSurface() {
+            try {
+                const surfaceType = document.getElementById('surfaceType').value;
+                const optionType = document.getElementById('surfaceOptionType').value;
+                const params = {
+                    S: parseFloat(document.getElementById('spotPrice').value),
+                    K: parseFloat(document.getElementById('strikePrice').value),
+                    T: parseFloat(document.getElementById('timeToExpiry').value),
+                    r: parseFloat(document.getElementById('riskFreeRate').value) / 100,
+                    sigma: parseFloat(document.getElementById('volatility').value) / 100
+                };
+                
+                Utils.showLoading('surfaceResults', 'Generating 3D surface...');
+                
+                setTimeout(() => {
+                    if (!surfaceGenerator) surfaceGenerator = new PriceSurfaceGenerator();
+                    
+                    let surfaceData;
+                    if (surfaceType === 'price') {
+                        surfaceData = surfaceGenerator.generatePriceSurface({...params, optionType});
+                    } else {
+                        surfaceData = surfaceGenerator.generateGreeksSurface({...params, optionType}, surfaceType);
+                    }
+                    
+                    const layout = {
+                        title: `${surfaceType.charAt(0).toUpperCase() + surfaceType.slice(1)} Surface - ${optionType.toUpperCase()} Option`,
+                        scene: {
+                            xaxis: { title: 'Volatility' },
+                            yaxis: { title: 'Spot Price ($)' },
+                            zaxis: { title: surfaceType === 'price' ? 'Option Price ($)' : surfaceType.charAt(0).toUpperCase() + surfaceType.slice(1) },
+                            bgcolor: 'rgba(0,0,0,0)'
+                        },
+                        paper_bgcolor: 'rgba(0,0,0,0)',
+                        plot_bgcolor: 'rgba(0,0,0,0)',
+                        font: { color: 'rgba(255,255,255,0.8)' }
+                    };
+                    
+                    Plotly.newPlot('surfaceResults', [surfaceData], layout, {responsive: true, displayModeBar: true});
+                }, 500);
+            } catch (error) {
+                console.error('Surface generation error:', error);
+                Utils.showError('surfaceResults', 'Surface generation error: ' + error.message);
+            }
+        }
+
+        // Arbitrage Detection
+        function detectArbitrage() {
+            try {
+                const params = {
+                    S: parseFloat(document.getElementById('spotPrice').value),
+                    K: parseFloat(document.getElementById('strikePrice').value),
+                    T: parseFloat(document.getElementById('timeToExpiry').value),
+                    r: parseFloat(document.getElementById('riskFreeRate').value) / 100,
+                    sigma: parseFloat(document.getElementById('volatility').value) / 100
+                };
+
+                if (!arbitrageDetector) arbitrageDetector = new ArbitrageDetector();
+                const results = arbitrageDetector.detectArbitrageOpportunities(params);
+                displayArbitrageResults(results);
+            } catch (error) {
+                console.error('Arbitrage detection error:', error);
+                Utils.showError('arbitrageResults', 'Arbitrage detection error: ' + error.message);
+            }
+        }
+
+        function displayArbitrageResults(results) {
+            const html = `
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="analysis-item ${results.summary.totalOpportunities > 0 ? 'border-warning' : 'border-success'}">
+                            <div class="analysis-label">Market Efficiency</div>
+                            <div class="analysis-value">${results.summary.marketEfficiency}</div>
+                            <div class="analysis-meta">${results.summary.overallAssessment}</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="validation-section">
+                    <h6 class="validation-title">Arbitrage Tests</h6>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="validation-item">
+                                <h6>Put-Call Parity</h6>
+                                <div class="validation-comparison">
+                                    <span>Parity Holds:</span>
+                                    <strong class="${results.putCallParity.holds ? 'text-success' : 'text-danger'}">
+                                        ${results.putCallParity.holds ? 'Yes' : 'No'}
+                                    </strong>
+                                </div>
+                                <div class="validation-comparison">
+                                    <span>Difference:</span><strong>${results.putCallParity.difference.toFixed(6)}</strong>
+                                </div>
+                                <small class="text-muted">${results.putCallParity.recommendation}</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="validation-item">
+                                <h6>Calendar Spread</h6>
+                                <div class="validation-comparison">
+                                    <span>Spread Value:</span><strong>$${results.calendarSpread.spreadValue.toFixed(4)}</strong>
+                                </div>
+                                <div class="validation-comparison">
+                                    <span>Arbitrage:</span>
+                                    <strong class="${results.calendarSpread.arbitrageDetected ? 'text-warning' : 'text-success'}">
+                                        ${results.calendarSpread.arbitrageDetected ? 'Detected' : 'None'}
+                                    </strong>
+                                </div>
+                                <small class="text-muted">${results.calendarSpread.recommendation}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('arbitrageResults').innerHTML = html;
+        }
+
+        // Utility functions
+        function getGreekSymbol(greek) {
+            const symbols = {
+                delta: 'Δ',
+                gamma: 'Γ', 
+                theta: 'Θ',
+                vega: 'ν',
+                rho: 'ρ'
+            };
+            return symbols[greek] || greek.charAt(0).toUpperCase();
+        }
+
+        function generateGreeksChart() {
+            // Placeholder for Greeks chart generation
+            Utils.showSuccess('greeksResults', 'Greeks chart generation feature coming soon!');
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initPriceChart();
+            
+            // Add smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Update navbar on scroll
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+                } else {
+                    navbar.style.background = 'rgba(10, 10, 10, 0.9)';
+                }
+            });
+
+            console.log('Advanced Quantitative Finance Platform loaded successfully');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,714 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bowen Yao — Quantitative Finance Professional | Quantitative Analyst, Derivatives at Athene">
+    <meta name="keywords" content="Bowen Yao,quantitative analyst,derivatives,risk management,option pricing,Black-Scholes,Greeks,Monte Carlo,financial engineering,portfolio">
+    <meta name="author" content="Bowen Yao">
+    
+    <title>Bowen Yao | Quantitative Analyst — Derivatives</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x1F4CA;</text></svg>">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS - Animate on Scroll -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- MathJax for LaTeX formulas -->
+    <script>
+      window.MathJax = { tex: { inlineMath: [['\\(','\\)']], displayMath: [['$$','$$']] } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.min.js" async></script>
+</head>
+
+<body>
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#home">
+                <span class="brand-icon">&#916;</span>
+                <span class="gradient-text">Bowen</span><span class="text-light">Yao</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Projects</a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="#projects"><i class="fas fa-th-large me-2"></i>Overview</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="pricing-lab.html"><i class="fas fa-calculator me-2"></i>Pricing Lab</a></li>
+                            <li><a class="dropdown-item" href="greeks.html"><i class="fas fa-chart-line me-2"></i>Greeks Analysis</a></li>
+                            <li><a class="dropdown-item" href="monte-carlo.html"><i class="fas fa-dice me-2"></i>Monte Carlo</a></li>
+                            <li><a class="dropdown-item" href="risk-metrics.html"><i class="fas fa-shield-alt me-2"></i>Risk Metrics</a></li>
+                            <li><a class="dropdown-item" href="strategies.html"><i class="fas fa-chess me-2"></i>Strategies</a></li>
+                            <li><a class="dropdown-item" href="surfaces.html"><i class="fas fa-cube me-2"></i>3D Surfaces</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/BowenYao-code/Risk-Management" target="_blank">
+                            <i class="fab fa-github me-1"></i>GitHub
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section id="home" class="hero-section">
+        <div class="hero-background"></div>
+        <canvas id="heroCanvas" class="hero-canvas"></canvas>
+        
+        <div class="container position-relative" style="z-index:2">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-7" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="hero-content">
+                        <div class="hero-badge mb-3">
+                            <span class="badge-dot"></span>
+                            <span>Quantitative Analyst &mdash; Derivatives @ Athene</span>
+                        </div>
+                        
+                        <h1 class="hero-title mb-3">
+                            <span class="d-block" style="font-size:1.1em;">Hi, I'm</span>
+                            <span class="gradient-text d-block" style="font-size:1.4em;">Bowen Yao</span>
+                        </h1>
+                        
+                        <p class="hero-subtitle mb-3" style="font-size:1.15rem; max-width:540px;">
+                            Quantitative Analyst specializing in <strong>derivatives pricing</strong>, 
+                            <strong>risk analytics</strong>, and <strong>stochastic modeling</strong> 
+                            at <strong>Athene USA Corporation</strong>.
+                        </p>
+                        
+                        <div class="hero-tags mb-4">
+                            <span class="hero-tag"><i class="fas fa-briefcase me-1"></i>Athene USA</span>
+                            <span class="hero-tag"><i class="fas fa-graduation-cap me-1"></i>Duke M.Eng</span>
+                            <span class="hero-tag"><i class="fas fa-chart-line me-1"></i>Derivatives</span>
+                            <span class="hero-tag"><i class="fas fa-dice me-1"></i>Monte Carlo</span>
+                            <span class="hero-tag"><i class="fas fa-shield-alt me-1"></i>Risk Analytics</span>
+                        </div>
+                    
+                        <div class="hero-buttons">
+                            <a href="#experience" class="btn-modern btn-primary-modern me-3 mb-3">
+                                <i class="fas fa-user-tie me-2"></i>My Experience
+                            </a>
+                            <a href="#projects" class="btn-modern btn-secondary-modern me-3 mb-3">
+                                <i class="fas fa-code me-2"></i>View Projects
+                            </a>
+                            <a href="https://github.com/BowenYao-code/Risk-Management" class="btn-modern btn-tertiary-modern mb-3" target="_blank">
+                                <i class="fab fa-github me-2"></i>Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-5" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="hero-photo-wrapper text-center">
+                        <div class="photo-frame">
+                            <img src="photo.jpg" alt="Bowen Yao" class="hero-photo" />
+                            <div class="photo-decoration"></div>
+                            <div class="photo-decoration-ring"></div>
+                        </div>
+                        <div class="photo-info-card mt-4">
+                            <div class="d-flex align-items-center justify-content-center gap-4">
+                                <a href="mailto:bowenyao984@gmail.com" class="photo-link" title="Email">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                                <a href="https://linkedin.com/in/bowen-yao" class="photo-link" target="_blank" title="LinkedIn">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="https://github.com/BowenYao-code" class="photo-link" target="_blank" title="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="tel:+19843358024" class="photo-link" title="Phone">
+                                    <i class="fas fa-phone"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ABOUT ME ========== -->
+    <section id="about" class="py-4 section-dark">
+        <div class="container">
+            <div class="text-center mb-4" data-aos="fade-up">
+                <span class="section-badge">About Me</span>
+                <h2 class="section-title gradient-text">Professional Summary</h2>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
+                    <div class="about-card">
+                        <p class="about-lead mb-4">
+                            I'm a quantitative finance professional currently serving as 
+                            <strong>Quantitative Analyst &mdash; Derivatives</strong> 
+                            at <strong>Athene USA Corporation</strong>. My work focuses on building and refining 
+                            valuation and risk models for equity, FX, and interest rate derivatives &mdash; 
+                            options, swaps, and forwards.
+                        </p>
+                        <p class="about-text mb-4">
+                            I hold a <strong>Master of Engineering in Financial Technology</strong> from 
+                            <strong>Duke University</strong> (GPA 3.8) and a <strong>B.S. in Finance</strong> from 
+                            <strong>Sun Yat-sen University</strong> (GPA 3.8). My core expertise spans Monte Carlo optimization, 
+                            stochastic modeling, Greeks analysis, and building production-grade analytical tools 
+                            for traders and portfolio managers.
+                        </p>
+                        <p class="about-text mb-0">
+                            This portfolio showcases both my professional experience and the 
+                            <a href="#projects" class="gradient-text fw-bold text-decoration-none">quantitative platform</a> 
+                            I built from scratch &mdash; a comprehensive derivatives pricing, risk analytics, 
+                            and strategy construction engine that demonstrates the same skills I apply daily 
+                            on the job.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Stats -->
+            <div class="row g-4 mt-4 justify-content-center">
+                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="150">
+                    <div class="stat-card-mini text-center">
+                        <div class="stat-icon-sm"><i class="fas fa-briefcase"></i></div>
+                        <div class="stat-number-lg gradient-text">2+</div>
+                        <div class="stat-label-sm">Years Quant Finance</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-card-mini text-center">
+                        <div class="stat-icon-sm"><i class="fas fa-calculator"></i></div>
+                        <div class="stat-number-lg gradient-text">12</div>
+                        <div class="stat-label-sm">Pricing Models Built</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="250">
+                    <div class="stat-card-mini text-center">
+                        <div class="stat-icon-sm"><i class="fas fa-tachometer-alt"></i></div>
+                        <div class="stat-number-lg gradient-text">40%</div>
+                        <div class="stat-label-sm">MC Speed Improvement</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-card-mini text-center">
+                        <div class="stat-icon-sm"><i class="fas fa-chart-line"></i></div>
+                        <div class="stat-number-lg gradient-text">30+</div>
+                        <div class="stat-label-sm">Daily Trade Decisions</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PROFESSIONAL EXPERIENCE ========== -->
+    <section id="experience" class="py-4">
+        <div class="container">
+            <div class="text-center mb-4" data-aos="fade-up">
+                <span class="section-badge">Career</span>
+                <h2 class="section-title gradient-text">Professional Experience</h2>
+            </div>
+            
+            <!-- Athene — Current Role -->
+            <div class="row justify-content-center mb-3">
+                <div class="col-lg-10" data-aos="fade-up" data-aos-delay="50">
+                    <div class="experience-card exp-highlight">
+                        <div class="exp-header">
+                            <div class="exp-company-info">
+                                <div class="exp-icon-wrapper"><i class="fas fa-rocket"></i></div>
+                                <div>
+                                    <h4 class="exp-company mb-0">Athene USA Corporation</h4>
+                                    <span class="exp-location"><i class="fas fa-map-marker-alt me-1"></i>West Des Moines, IA</span>
+                                </div>
+                            </div>
+                            <div class="exp-meta">
+                                <span class="exp-date exp-date-light">Jan 2026 &mdash; Present</span>
+                            </div>
+                        </div>
+                        <h5 class="exp-role gradient-text">Quantitative Analyst &mdash; Derivatives</h5>
+                        <ul class="exp-list">
+                            <li>Build, refine, and manage <strong>derivative pricing and risk models</strong> for equity, FX, and interest rate instruments &mdash; options, swaps, and forwards &mdash; within a large framework of existing models and production processes</li>
+                            <li>Perform continuous <strong>model performance monitoring</strong> and quality assurance; execute stress testing of the Asset-Liability book across complex market scenarios and implement model risk controls</li>
+                            <li>Produce accurate and timely <strong>company-wide liquidity stress test results</strong> incorporating multiple adverse scenarios and regulatory reporting requirements</li>
+                            <li>Design and supervise creation of <strong>analytical reports and tools</strong> for portfolio analytics, risk evaluations, model evaluation and onboarding for traders and portfolio managers</li>
+                            <li>Collaborate with software and system engineers to support <strong>rapid development and deployment</strong> of research ideas, pricing models, and risk analytics to end-users and stakeholders</li>
+                        </ul>
+                        <div class="exp-project-link">
+                            <span class="exp-link-label"><i class="fas fa-link me-1"></i>Related platform modules I built:</span>
+                            <div class="exp-module-tags mt-1">
+                                <a href="pricing-lab.html" class="module-tag"><i class="fas fa-calculator me-1"></i>Pricing Lab</a>
+                                <a href="risk-metrics.html" class="module-tag"><i class="fas fa-shield-alt me-1"></i>Risk Metrics &amp; VaR</a>
+                                <a href="surfaces.html" class="module-tag"><i class="fas fa-cube me-1"></i>Vol Surfaces</a>
+                                <a href="greeks.html" class="module-tag"><i class="fas fa-chart-line me-1"></i>Greeks Dashboard</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Athene — Previous Role -->
+            <div class="row justify-content-center mb-3">
+                <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
+                    <div class="experience-card">
+                        <div class="exp-header">
+                            <div class="exp-company-info">
+                                <div class="exp-icon-wrapper"><i class="fas fa-chart-area"></i></div>
+                                <div>
+                                    <h4 class="exp-company mb-0">Athene USA Corporation</h4>
+                                    <span class="exp-location"><i class="fas fa-map-marker-alt me-1"></i>West Des Moines, IA</span>
+                                </div>
+                            </div>
+                            <div class="exp-meta">
+                                <span class="exp-date exp-date-light">Jun 2025 &mdash; Jan 2026</span>
+                            </div>
+                        </div>
+                        <h5 class="exp-role">Derivatives Risk Analyst</h5>
+                        <ul class="exp-list">
+                            <li>Optimized <strong>Monte Carlo simulations</strong> for exotic index derivatives (cliquet options) via Numba JIT compilation and variance reduction; achieved <strong>40% computation improvement</strong> supporting real-time pricing and Greeks analysis for 30+ daily trade decisions</li>
+                            <li>Decomposed equity indices underlying structured products; mapped constituents, weights, and SPX correlations to develop <strong>sector-based replication strategies</strong> using liquid futures, reducing hedging costs by <strong>15-20%</strong> at 98% hedge effectiveness</li>
+                            <li>Managed <strong>Greeks monitoring</strong> (delta, vega, gamma) across equity and FX options; executed delta-hedging strategies, analyzed implied-realized volatility spreads, and provided risk analysis for 5+ structured deals</li>
+                            <li>Built <strong>Python/Bloomberg API + SQL pipelines</strong> automating FX Swap and Cross Currency Swap calculations with real-time dashboards for trading teams</li>
+                        </ul>
+                        <div class="exp-project-link">
+                            <span class="exp-link-label"><i class="fas fa-link me-1"></i>Related platform modules I built:</span>
+                            <div class="exp-module-tags mt-1">
+                                <a href="monte-carlo.html" class="module-tag"><i class="fas fa-dice me-1"></i>Monte Carlo Engine</a>
+                                <a href="greeks.html" class="module-tag"><i class="fas fa-chart-line me-1"></i>Greeks Analysis</a>
+                                <a href="strategies.html" class="module-tag"><i class="fas fa-chess me-1"></i>Strategy Builder</a>
+                                <a href="risk-metrics.html" class="module-tag"><i class="fas fa-shield-alt me-1"></i>VaR / CVaR</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sinolink -->
+            <div class="row justify-content-center">
+                <div class="col-lg-10" data-aos="fade-up" data-aos-delay="150">
+                    <div class="experience-card">
+                        <div class="exp-header">
+                            <div class="exp-company-info">
+                                <div class="exp-icon-wrapper"><i class="fas fa-building"></i></div>
+                                <div>
+                                    <h4 class="exp-company mb-0">Sinolink Securities Asset Management</h4>
+                                    <span class="exp-location"><i class="fas fa-map-marker-alt me-1"></i>Shanghai, China</span>
+                                </div>
+                            </div>
+                            <div class="exp-meta">
+                                <span class="exp-date exp-date-light">May 2024 &mdash; Aug 2024</span>
+                            </div>
+                        </div>
+                        <h5 class="exp-role">Quantitative Risk Analyst Intern</h5>
+                        <ul class="exp-list">
+                            <li>Developed risk model for the <strong>QDII</strong> product; built <strong>VaR-GARCH model</strong> estimating exchange rate and global market risk with stress testing for equity desk position adjustments</li>
+                            <li>Led <strong>Oracle database redesign</strong>; optimized SQL queries reducing response time by <strong>28%</strong> and normalized tables for a <strong>27% speed increase</strong></li>
+                            <li>Built weekly default prediction reports for share pledge and ABS using <strong>SVM, XGBoost</strong> in a <strong>Stacking Ensemble</strong> framework; improved accuracy by 13%</li>
+                        </ul>
+                        <div class="exp-project-link">
+                            <span class="exp-link-label"><i class="fas fa-link me-1"></i>Related platform modules I built:</span>
+                            <div class="exp-module-tags mt-1">
+                                <a href="risk-metrics.html" class="module-tag"><i class="fas fa-shield-alt me-1"></i>VaR &amp; Stress Testing</a>
+                                <a href="risk-metrics.html" class="module-tag"><i class="fas fa-balance-scale me-1"></i>Arbitrage Detection</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== EDUCATION & PROJECTS ========== -->
+    <section id="education" class="py-4 section-dark">
+        <div class="container">
+            <div class="text-center mb-4" data-aos="fade-up">
+                <span class="section-badge">Education</span>
+                <h2 class="section-title gradient-text">Education &amp; Projects</h2>
+            </div>
+            
+            <div class="row g-4 justify-content-center">
+                <!-- Duke -->
+                <div class="col-lg-5" data-aos="fade-up" data-aos-delay="50">
+                    <div class="edu-card h-100">
+                        <div class="edu-icon"><i class="fas fa-university"></i></div>
+                        <h5 class="edu-school gradient-text">Duke University</h5>
+                        <p class="edu-location">Durham, NC</p>
+                        <h6 class="edu-degree">Master of Engineering &mdash; Financial Technology</h6>
+                        <p class="edu-gpa">GPA: 3.8 / 4.0 &nbsp;|&nbsp; May 2026</p>
+                        <div class="edu-courses">
+                            <span class="edu-tag">Quantitative Risk Management</span>
+                            <span class="edu-tag">Machine Learning for Fintech</span>
+                            <span class="edu-tag">Asset Pricing &amp; Risk</span>
+                            <span class="edu-tag">Algorithmic Trading</span>
+                            <span class="edu-tag">Software Engineering</span>
+                            <span class="edu-tag">Financial Institution Products</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sun Yat-sen -->
+                <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
+                    <div class="edu-card h-100">
+                        <div class="edu-icon"><i class="fas fa-globe-asia"></i></div>
+                        <h5 class="edu-school gradient-text">Sun Yat-sen University (SYSU)</h5>
+                        <p class="edu-location">Guangzhou, China</p>
+                        <h6 class="edu-degree">Bachelor of Science &mdash; Finance</h6>
+                        <p class="edu-gpa">GPA: 3.8 / 4.0 &nbsp;|&nbsp; Jun 2024</p>
+                        <div class="edu-courses">
+                            <span class="edu-tag">Advanced Mathematics</span>
+                            <span class="edu-tag">Probability &amp; Statistics</span>
+                            <span class="edu-tag">Econometrics</span>
+                            <span class="edu-tag">Linear Algebra</span>
+                            <span class="edu-tag">Financial Time Series</span>
+                            <span class="edu-tag">Mathematical Modeling</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Projects -->
+            <div class="row justify-content-center mt-4">
+                <div class="col-lg-10" data-aos="fade-up" data-aos-delay="150">
+                    <div class="research-card">
+                        <div class="research-header d-flex align-items-center mb-3">
+                            <div class="exp-icon-wrapper me-3"><i class="fas fa-flask"></i></div>
+                            <div>
+                                <h5 class="mb-0 gradient-text">Machine Learning Application in Options Trading</h5>
+                                <span class="exp-date-light">Team Leader &amp; Model Analyst &nbsp;|&nbsp; Duke University &nbsp;|&nbsp; Jan 2025 &mdash; May 2025</span>
+                            </div>
+                        </div>
+                        <ul class="exp-list">
+                            <li>Developed strategy analyzing S&amp;P 500 options term structure finding implied-realized volatility mispricing of <strong>4%</strong>; implemented signals achieving <strong>0.95 Sharpe ratio</strong> with <strong>28% annual returns</strong> in backtesting</li>
+                            <li>Built systematic framework maintaining <strong>delta-neutrality</strong> through hourly rebalancing; set 6% position and 20% sector limits achieving <strong>12% maximum drawdown</strong> while preserving 85% of alpha</li>
+                            <li>Conducted <strong>PCA</strong> isolating three factors explaining 78% variance; optimized loadings reducing portfolio volatility by <strong>18%</strong> without sacrificing returns</li>
+                        </ul>
+                        <div class="exp-project-link mt-2">
+                            <span class="exp-link-label"><i class="fas fa-link me-1"></i>Related platform modules:</span>
+                            <div class="exp-module-tags mt-1">
+                                <a href="strategies.html" class="module-tag"><i class="fas fa-chess me-1"></i>Strategy Builder</a>
+                                <a href="surfaces.html" class="module-tag"><i class="fas fa-cube me-1"></i>Vol Surfaces</a>
+                                <a href="greeks.html" class="module-tag"><i class="fas fa-chart-line me-1"></i>Greeks Dashboard</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- thisRate Project -->
+            <div class="row justify-content-center mt-3">
+                <div class="col-lg-10" data-aos="fade-up" data-aos-delay="200">
+                    <div class="research-card">
+                        <div class="research-header d-flex align-items-center mb-3">
+                            <div class="exp-icon-wrapper me-3"><i class="fas fa-chart-bar"></i></div>
+                            <div>
+                                <h5 class="mb-0 gradient-text">thisRate &mdash; Mortgage Rate Intelligence Platform</h5>
+                                <span class="exp-date-light">Project Manager &nbsp;|&nbsp; Duke Capstone Project &nbsp;|&nbsp; Jan 2026 &mdash; Apr 2026</span>
+                            </div>
+                        </div>
+                        <ul class="exp-list">
+                            <li>Led a cross-functional team building a <strong>real-time mortgage rate analytics platform</strong>; defined product KPIs, managed sprint cycles, and coordinated data engineering and frontend workstreams</li>
+                            <li>Designed and implemented <strong>automated data pipelines</strong> ingesting daily rate feeds from 50+ lenders; built ETL workflows with data quality checks and anomaly detection</li>
+                            <li>Delivered a <strong>VP-level executive dashboard</strong> with interactive rate comparisons, trend forecasting, and regional heat maps enabling data-driven lending decisions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TECHNICAL SHOWCASE ========== -->
+    <section id="projects" class="py-4">
+        <div class="container">
+            <div class="text-center mb-4" data-aos="fade-up">
+                <span class="section-badge">Portfolio</span>
+                <h2 class="section-title gradient-text">Quantitative Platform</h2>
+                <p class="section-subtitle">A full-stack derivatives pricing &amp; risk analytics engine I built from scratch &mdash; click any module to explore</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
+                    <a href="pricing-lab.html" class="text-decoration-none">
+                    <div class="project-card h-100">
+                        <div class="project-icon"><i class="fas fa-calculator"></i></div>
+                        <h5 class="project-title">Black-Scholes Pricing Lab</h5>
+                        <p class="project-desc">Multi-model pricing engine &mdash; BSM analytical, Monte Carlo, and CRR Binomial Tree &mdash; with full d1/d2 decomposition and put-call parity verification.</p>
+                        <div class="project-tech">
+                            <span>Black-Scholes</span><span>Binomial Tree</span><span>Put-Call Parity</span>
+                        </div>
+                        <div class="project-cta">Open Module <i class="fas fa-arrow-right ms-1"></i></div>
+                    </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="50">
+                    <a href="greeks.html" class="text-decoration-none">
+                    <div class="project-card h-100">
+                        <div class="project-icon"><i class="fas fa-chart-line"></i></div>
+                        <h5 class="project-title">Greeks Dashboard</h5>
+                        <p class="project-desc">All 5 Greeks with scenario analysis, risk scoring, hedging recommendations, and interactive sensitivity charts.</p>
+                        <div class="project-tech">
+                            <span>Delta</span><span>Gamma</span><span>Vega</span><span>Theta</span><span>Rho</span>
+                        </div>
+                        <div class="project-cta">Open Module <i class="fas fa-arrow-right ms-1"></i></div>
+                    </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <a href="monte-carlo.html" class="text-decoration-none">
+                    <div class="project-card h-100">
+                        <div class="project-icon"><i class="fas fa-dice"></i></div>
+                        <h5 class="project-title">Monte Carlo Engine</h5>
+                        <p class="project-desc">GBM path simulation with antithetic &amp; control variates, convergence analysis, and exotic option pricing (barrier, Asian, lookback).</p>
+                        <div class="project-tech">
+                            <span>GBM</span><span>Variance Reduction</span><span>Exotic Options</span>
+                        </div>
+                        <div class="project-cta">Open Module <i class="fas fa-arrow-right ms-1"></i></div>
+                    </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="150">
+                    <a href="risk-metrics.html" class="text-decoration-none">
+                    <div class="project-card h-100">
+                        <div class="project-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h5 class="project-title">Risk Metrics &amp; VaR</h5>
+                        <p class="project-desc">VaR &amp; CVaR at multiple confidence levels, implied volatility solver (Newton-Raphson), arbitrage detection via put-call parity.</p>
+                        <div class="project-tech">
+                            <span>VaR/CVaR</span><span>Implied Vol</span><span>Arbitrage</span>
+                        </div>
+                        <div class="project-cta">Open Module <i class="fas fa-arrow-right ms-1"></i></div>
+                    </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <a href="strategies.html" class="text-decoration-none">
+                    <div class="project-card h-100">
+                        <div class="project-icon"><i class="fas fa-chess"></i></div>
+                        <h5 class="project-title">Strategy Builder</h5>
+                        <p class="project-desc">10-preset option strategies &mdash; straddles, strangles, spreads, butterflies, iron condors &mdash; with payoff diagrams and breakeven analysis.</p>
+                        <div class="project-tech">
+                            <span>10 Strategies</span><span>P&amp;L Analysis</span><span>Payoff Diagrams</span>
+                        </div>
+                        <div class="project-cta">Open Module <i class="fas fa-arrow-right ms-1"></i></div>
+                    </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="250">
+                    <a href="surfaces.html" class="text-decoration-none">
+                    <div class="project-card h-100">
+                        <div class="project-icon"><i class="fas fa-cube"></i></div>
+                        <h5 class="project-title">3D Volatility Surfaces</h5>
+                        <p class="project-desc">Interactive Plotly 3D surfaces for price, delta, gamma, vega, theta across strike &times; maturity space.</p>
+                        <div class="project-tech">
+                            <span>Plotly 3D</span><span>Vol Surface</span><span>Greeks Surface</span>
+                        </div>
+                        <div class="project-cta">Open Module <i class="fas fa-arrow-right ms-1"></i></div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Mathematical Foundations (compact) -->
+            <div class="row justify-content-center mt-5">
+                <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
+                    <div class="math-banner">
+                        <h5 class="gradient-text mb-3"><i class="fas fa-square-root-alt me-2"></i>Mathematical Foundations</h5>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="math-mini">
+                                    <h6>Black-Scholes-Merton</h6>
+                                    <div class="math-formula">$$C = S_0 N(d_1) - K e^{-rT} N(d_2)$$</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="math-mini">
+                                    <h6>Geometric Brownian Motion</h6>
+                                    <div class="math-formula">$$dS = \mu S\,dt + \sigma S\,dW_t$$</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="math-mini">
+                                    <h6>Value at Risk</h6>
+                                    <div class="math-formula">$$\text{VaR}_\alpha = -\inf\{x : P(L \le x) \ge \alpha\}$$</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SKILLS ========== -->
+    <section id="skills" class="py-4 section-dark">
+        <div class="container">
+            <div class="text-center mb-4" data-aos="fade-up">
+                <span class="section-badge">Skills</span>
+                <h2 class="section-title gradient-text">Technical Skills</h2>
+            </div>
+            
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="0">
+                    <div class="skill-category-card h-100">
+                        <div class="skill-cat-icon"><i class="fas fa-code"></i></div>
+                        <h6 class="skill-cat-title">Technical</h6>
+                        <div class="skill-tag-list">
+                            <span>Python</span><span>Numba</span><span>NumPy</span><span>Pandas</span>
+                            <span>Scikit-learn</span><span>SQL</span><span>VBA</span><span>MATLAB</span>
+                            <span>Bloomberg</span><span>Tableau</span><span>Excel</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="50">
+                    <div class="skill-category-card h-100">
+                        <div class="skill-cat-icon"><i class="fas fa-chart-bar"></i></div>
+                        <h6 class="skill-cat-title">Quantitative</h6>
+                        <div class="skill-tag-list">
+                            <span>Options Pricing</span><span>Greeks</span><span>Monte Carlo</span>
+                            <span>Volatility Modeling</span><span>Machine Learning</span>
+                            <span>P&amp;L Attribution</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="skill-category-card h-100">
+                        <div class="skill-cat-icon"><i class="fas fa-file-contract"></i></div>
+                        <h6 class="skill-cat-title">Products</h6>
+                        <div class="skill-tag-list">
+                            <span>Equity Derivatives</span><span>Exotic Options</span>
+                            <span>Structured Products</span><span>ABS/CMBS</span>
+                            <span>Total Return Swaps</span><span>CLOs</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="150">
+                    <div class="skill-category-card h-100">
+                        <div class="skill-cat-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h6 class="skill-cat-title">Professional</h6>
+                        <div class="skill-tag-list">
+                            <span>Dynamic Hedging</span><span>VaR/ES</span><span>Stress Testing</span>
+                            <span>Index Replicating</span><span>Backtesting</span>
+                            <span>SA-CCR</span><span>FRTB</span><span>Basel III</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section id="contact" class="py-4">
+        <div class="container">
+            <div class="text-center mb-4" data-aos="fade-up">
+                <span class="section-badge">Connect</span>
+                <h2 class="section-title gradient-text">Get in Touch</h2>
+                <p class="section-subtitle">Open to Senior Quantitative Analyst &mdash; Derivatives opportunities</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="contact-card">
+                        <div class="row g-4 align-items-center">
+                            <div class="col-md-6">
+                                <div class="contact-info">
+                                    <h5 class="mb-2">Bowen Yao</h5>
+                                    <p class="contact-subtitle small mb-3">Quantitative Analyst &mdash; Derivatives</p>
+                                    <div class="contact-detail"><i class="fas fa-map-marker-alt"></i><span>West Des Moines, IA</span></div>
+                                    <div class="contact-detail"><i class="fas fa-graduation-cap"></i><span>Duke University &bull; Sun Yat-sen University</span></div>
+                                    <div class="contact-detail"><i class="fas fa-briefcase"></i><span>Athene USA Corporation</span></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="contact-links">
+                                    <a href="mailto:bowenyao984@gmail.com" class="contact-link"><i class="fas fa-envelope"></i><span>bowenyao984@gmail.com</span></a>
+                                    <a href="tel:+19843358024" class="contact-link"><i class="fas fa-phone"></i><span>(984) 335-8024</span></a>
+                                    <a href="https://linkedin.com/in/bowen-yao" class="contact-link" target="_blank"><i class="fab fa-linkedin"></i><span>linkedin.com/in/bowen-yao</span></a>
+                                    <a href="https://github.com/BowenYao-code" class="contact-link" target="_blank"><i class="fab fa-github"></i><span>github.com/BowenYao-code</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="py-4 text-center">
+        <div class="container">
+            <p class="mb-2">&copy; 2025 Bowen Yao. All rights reserved.</p>
+            <p class="text-muted small mb-3">Quantitative Finance &amp; Derivatives Portfolio</p>
+            <div class="footer-links">
+                <a href="https://github.com/BowenYao-code/Risk-Management" target="_blank">GitHub</a>
+                <span class="mx-2">&bull;</span>
+                <a href="#" onclick="scrollToTop(); return false;">Back to Top</a>
+                <span class="mx-2">&bull;</span>
+                <a href="mailto:bowenyao984@gmail.com">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== Scripts ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+    
+    <script>
+        /* ===== AOS Init ===== */
+        AOS.init({ duration: 800, once: true, offset: 60 });
+
+        /* ===== Animated Hero Canvas (particle network) ===== */
+        (function(){
+            var c=document.getElementById('heroCanvas');if(!c)return;
+            var ctx=c.getContext('2d'),w,h,particles=[];
+            function resize(){w=c.width=c.offsetWidth;h=c.height=c.offsetHeight;}
+            window.addEventListener('resize',resize);resize();
+            function P(){this.x=Math.random()*w;this.y=Math.random()*h;this.vx=(Math.random()-0.5)*0.4;this.vy=(Math.random()-0.5)*0.4;this.r=Math.random()*2+0.5;this.a=Math.random()*0.3+0.1;}
+            P.prototype.update=function(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>w)this.vx*=-1;if(this.y<0||this.y>h)this.vy*=-1;};
+            P.prototype.draw=function(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle='rgba(102,126,234,'+this.a+')';ctx.fill();};
+            for(var i=0;i<80;i++)particles.push(new P());
+            (function loop(){ctx.clearRect(0,0,w,h);
+                for(var i=0;i<particles.length;i++){particles[i].update();particles[i].draw();
+                    for(var j=i+1;j<particles.length;j++){
+                        var dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,dist=Math.sqrt(dx*dx+dy*dy);
+                        if(dist<120){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle='rgba(102,126,234,'+(0.08*(1-dist/120))+')';ctx.stroke();}
+                    }
+                }
+                requestAnimationFrame(loop);
+            })();
+        })();
+
+        /* ===== Utilities ===== */
+        function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
+        window.addEventListener('scroll',function(){
+            var nav=document.querySelector('.navbar');
+            if(window.scrollY>50)nav.classList.add('navbar-scrolled');
+            else nav.classList.remove('navbar-scrolled');
+        });
+        var sections=document.querySelectorAll('section[id]');
+        window.addEventListener('scroll',function(){
+            var scrollY=window.pageYOffset;
+            sections.forEach(function(s){
+                var top=s.offsetTop-100,h=s.offsetHeight,id=s.getAttribute('id');
+                var link=document.querySelector('.navbar a[href="#'+id+'"]');
+                if(link){if(scrollY>=top&&scrollY<top+h)link.classList.add('active');else link.classList.remove('active');}
+            });
+        });
+    </script>
+</body>
+</html>
+
